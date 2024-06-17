@@ -406,7 +406,7 @@ public class TirocinioService {
     }
 
     public Resource generaLibrettoDiario(LibrettoDiarioRequest librettoDiarioRequest) throws IOException, InterruptedException {
-        String outputPath = "allegati/tirocini/" + librettoDiarioRequest.getIdTirocinio() + "/libretto_diario/" + librettoDiarioRequest.getIdTirocinio() + ".pdf";
+        String outputPath = "allegati//tirocini//" + librettoDiarioRequest.getIdTirocinio() + "//libretto_diario//" + librettoDiarioRequest.getIdTirocinio() + ".pdf";
 
         Tirocinio tirocinio = this.tirocinioRepository.findTirocinioById(librettoDiarioRequest.getIdTirocinio());
 
@@ -425,6 +425,11 @@ public class TirocinioService {
                 .elencoAttivita(this.attivitaRepository.findAllByTirocinio(tirocinio).stream().map(this.attivitaDTOMapper).toList())
                 .annotazioni(librettoDiarioRequest.getAnnotazioni())
                 .build();
+
+        File cartella = new File("allegati/tirocini/" + librettoDiarioRequest.getIdTirocinio() + "/libretto_diario");
+        if (!cartella.exists()) {
+            cartella.mkdirs();
+        }
 
         ObjectMapper mapper = new ObjectMapper();
         String jsonString = mapper.writeValueAsString(librettoDiarioInput);
