@@ -14,7 +14,7 @@ import java.util.List;
 @Builder
 public class LibrettoDiarioInput {
 
-    String outputPath;
+    Long idTirocinio;
     String nomeDipartimento;
     String nomeCDS;
     String nomeCognomeStudente;

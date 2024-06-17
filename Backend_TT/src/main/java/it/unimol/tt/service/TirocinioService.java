@@ -407,15 +407,11 @@ public class TirocinioService {
 
     public Resource generaLibrettoDiario(LibrettoDiarioRequest librettoDiarioRequest) throws IOException, InterruptedException {
 
-        String[] paths = { "allegati", "tirocini", librettoDiarioRequest.getIdTirocinio().toString(), "libretto_diario", librettoDiarioRequest.getIdTirocinio().toString(), ".pdf" };
-
-
-        String outputPath = "allegati//tirocini//" + librettoDiarioRequest.getIdTirocinio() + "//libretto_diario//" + librettoDiarioRequest.getIdTirocinio() + ".pdf";
 
         Tirocinio tirocinio = this.tirocinioRepository.findTirocinioById(librettoDiarioRequest.getIdTirocinio());
 
         LibrettoDiarioInput librettoDiarioInput = LibrettoDiarioInput.builder()
-                .outputPath(outputPath)
+                .idTirocinio(librettoDiarioRequest.getIdTirocinio())
                 .nomeDipartimento("Bioscienze e Territorio")
                 .nomeCDS(tirocinio.getCorsoDiStudi())
                 .nomeCognomeStudente(tirocinio.getStudente().getNome() + " " + tirocinio.getStudente().getCognome())
@@ -430,7 +426,8 @@ public class TirocinioService {
                 .annotazioni(librettoDiarioRequest.getAnnotazioni())
                 .build();
 
-        File cartella = new File("allegati/tirocini/" + librettoDiarioRequest.getIdTirocinio() + "/libretto_diario");
+        String outputPath = "allegati/tirocini/" + librettoDiarioRequest.getIdTirocinio() + "/libretto_diario";
+        File cartella = new File(outputPath);
         if (!cartella.exists()) {
             cartella.mkdirs();
         }
@@ -438,7 +435,7 @@ public class TirocinioService {
         ObjectMapper mapper = new ObjectMapper();
         String jsonString = mapper.writeValueAsString(librettoDiarioInput);
 
-        ProcessBuilder processBuilder = new ProcessBuilder("python", "script_python/genera_libd/genera_libd.py");
+        ProcessBuilder processBuilder = new ProcessBuilder("python3", "script_python/genera_libd/genera_libd.py");
         processBuilder.redirectErrorStream(true);
 
         Process process = processBuilder.start();
@@ -452,7 +449,9 @@ public class TirocinioService {
 
         process.waitFor();
 
-        Path percorso = Paths.get(outputPath);
+
+
+        Path percorso = Paths.get(outputPath + "/" + librettoDiarioRequest.getIdTirocinio() + ".pdf");
 
         Resource resource = new UrlResource(percorso.toUri());
 
