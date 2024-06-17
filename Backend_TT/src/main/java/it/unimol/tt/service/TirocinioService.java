@@ -1,6 +1,5 @@
 package it.unimol.tt.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import it.unimol.tt.dto.AllegatoDTO;
 import it.unimol.tt.dto.AttivitaDTO;
@@ -412,16 +411,15 @@ public class TirocinioService {
         Tirocinio tirocinio = this.tirocinioRepository.findTirocinioById(librettoDiarioRequest.getIdTirocinio());
 
         LibrettoDiarioInput librettoDiarioInput = LibrettoDiarioInput.builder()
-                .inputPath("script_python/genera_libd/Libretto_Diario_Tirocinio.pdf")
                 .outputPath(outputPath)
                 .nomeDipartimento("Bioscienze e Territorio")
                 .nomeCDS(tirocinio.getCorsoDiStudi())
                 .nomeCognomeStudente(tirocinio.getStudente().getNome() + " " + tirocinio.getStudente().getCognome())
                 .nomeLaboratorio(tirocinio.getLaboratorio().getNome())
-                .cittaLaboratorio(tirocinio.getLaboratorio().getCitta())
+                .luogoLaboratorio(tirocinio.getLaboratorio().getIndirizzo() + " - " + tirocinio.getLaboratorio().getCap() + " " + tirocinio.getLaboratorio().getCitta())
                 .dataApprovProgForm(librettoDiarioRequest.getDataProgForm())
                 .tutor("Prof. " + tirocinio.getTutor().getNome() + " " + tirocinio.getTutor().getCognome())
-                .tutorUniversitario(librettoDiarioRequest.getTutorUniv())
+                .tutorUniversitario("Prof. " + librettoDiarioRequest.getTutorUniv())
                 .dataInizio(librettoDiarioRequest.getDataInizio())
                 .dataFine(librettoDiarioRequest.getDataFine())
                 .elencoAttivita(this.attivitaRepository.findAllByTirocinio(tirocinio).stream().map(this.attivitaDTOMapper).toList())

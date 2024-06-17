@@ -14,13 +14,12 @@ import java.util.List;
 @Builder
 public class LibrettoDiarioInput {
 
-    String inputPath;
     String outputPath;
     String nomeDipartimento;
     String nomeCDS;
     String nomeCognomeStudente;
     String nomeLaboratorio;
-    String cittaLaboratorio;
+    String luogoLaboratorio;
     String dataApprovProgForm;
     String tutor;
     String tutorUniversitario;

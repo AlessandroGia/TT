@@ -1,3 +1,5 @@
+import json
+import sys
 import pdfkit
 from pypdf import PdfReader, PdfWriter
 from html_style import HtmlStyle
@@ -36,39 +38,8 @@ def genera_libretto_diario(output_path, data):
 
 
 if __name__ == "__main__":
-    data = {
-        "output_path": "prova.pdf",
-        "nomeDipartimento": "Bioscienze e Territorio",
-        "nomeCDS": "Informatica",
-        "nomeCognomeStudente": "Mario Rossi",
-        "nomeLaboratorio": "Laboratorio di Informatica",
-        "luogoLaboratorio": "Roma",
-        "dataApprovProgForm": "2024-01-01",
-        "tutor": "Prof. Giovanni Verdi",
-        "tutorUniversitario": "Prof.ssa Anna Bianchi",
-        "dataInizio": "2024-01-15",
-        "dataFine": "2024-06-15",
-        "elencoAttivita": [
-            {
-                "data": "2024-01-16",
-                "orarioEntrata": "09:00",
-                "orarioUscita": "12:00",
-                "attivitaSvolta": "ciao... mi manchi."
-            },
-            {
-                "data": "2024-01-17",
-                "orarioEntrata": "10:00",
-                "orarioUscita": "13:00",
-                "attivitaSvolta": "Studio delle Attività tecnologie dhawjgdhjagdhja dadvahjgdadvhjaghjda sdadhjgahjgdhad adhajwgdaujyfgkda"
-            },
-            {
-                "data": "2024-01-18",
-                "orarioEntrata": "11:00",
-                "orarioUscita": "14:00",
-                "attivitaSvolta": "Sviluppo Attività di un progetto"
-            }
-        ],
-        "annotazioni": "Tirocinio svolto con impegno e dedizione."
-    }
 
-    genera_libretto_diario("Leonardus.pdf", data)
+    input_json = sys.stdin.read()
+    data = json.loads(input_json)
+
+    genera_libretto_diario(data['output_path'], data)
