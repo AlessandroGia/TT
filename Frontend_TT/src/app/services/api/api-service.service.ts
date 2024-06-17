@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import { Config } from 'config-app';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ApiServiceService {
 
-  private config?: Config; 
+  ip = "192.168.1.9"
+  port = "8080"
 
-  constructor() {
-  }
+  constructor() { }
   
   // Root endpoint
-  public url = `http:///api/v1`;
+  public url = `http:/${this.ip}:${this.port}//api/v1`;
   
 }
