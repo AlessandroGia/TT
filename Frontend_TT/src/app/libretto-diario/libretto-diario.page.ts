@@ -202,8 +202,8 @@ export class LibrettoDiarioPage {
       else if (new Date(this.dataFFormattata).getTime() - new Date(this.dataIFormattata).getTime() <= 0 )
         this.presentToast("La data di fine attivita' non e' valida");
       else {
-        this.librettoDiaroApiService.generaLibrettoDiario(this.tirocinio.id, this.dataPFFormattata, this.tutorSelezionato.nome, this.dataIFormattata, this.dataFFormattata, this.nota).subscribe(async (res) => {
-          this.salvaFile(res);
+        this.librettoDiaroApiService.generaLibrettoDiario(this.tirocinio.id, this.dataPFFormattata, this.tutorSelezionato.nome + " " + this.tutorSelezionato.cognome, this.dataIFormattata, this.dataFFormattata, this.nota).subscribe(async (res) => {
+          //this.salvaFile(res);
           await this.fileHandlerService.scaricaEApriFile(res.data, res.filename);
           this.navCtrl.navigateBack(['/visualizzazione-tirocinio']);
         });

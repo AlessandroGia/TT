@@ -56,7 +56,7 @@ export class VisualizzazioneTesiPage {
 
     this.route.queryParams.subscribe(params => {
       
-      if (params["id"] !== undefined || params["id"] !== null)
+      if (params["id"] !== undefined && params["id"] !== null)
         this.tesiId = Number(params["id"]);
 
       this.tesiApiService.getInterni().subscribe((res) => {

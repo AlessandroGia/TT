@@ -58,7 +58,7 @@ export class VisualizzazioneTirocinioPage {
 
     this.route.queryParams.subscribe(params => {
 
-      if (params["id"] !== undefined || params["id"] !== null) 
+      if (params["id"] !== undefined && params["id"] !== null) 
         this.tirocinioId = params["id"];
 
       this.tirocinioApiService.getInterni().subscribe((res) => {

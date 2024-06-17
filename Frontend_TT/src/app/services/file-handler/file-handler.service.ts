@@ -75,11 +75,23 @@ export class FileHandlerService {
               console.log('Error opening file', e);
               if (e.code === 'UNIMPLEMENTED') {
                 console.log('The functionality is not implemented on this platform.');
+                const url = window.URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = fileName;
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
               }
             });
         } else {
-          console.log('Opening file in new tab:', finalPath);
-          window.open(finalPath, '_blank');
+          const url = window.URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = fileName;
+          document.body.appendChild(a);
+          a.click();
+          window.URL.revokeObjectURL(url);
         }
       }
     } catch (error) {
