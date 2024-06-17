@@ -1,0 +1,91 @@
+ion-toolbar {
+    --background: #012D5E
+}
+
+ion-input {
+    --color: #ffffff;
+    --placeholder-color: #ffffff;
+}
+
+ion-datetime {
+    --background: #CAEF23;
+    --title-color: #012D5E;
+}
+
+ion-datetime::part(calendar-day) {
+    color: #012D5E;
+}
+
+ion-datetime::part(calendar-day):active:focus {
+    background-color: #ffffff;
+}
+
+ion-datetime::part(calendar-day):focus {
+    background-color: #ffffff;
+}
+
+.item {
+    --color: #ffffff;
+}
+
+.attivitaTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: xx-large;
+    color: white;
+}
+
+.back {
+    --background: #012D5E;
+    color: #ffffff;
+}
+
+.attivitaContent {
+    --ion-background-color: #012D5E;
+}
+
+.mainDiv {
+    position: relative;
+}
+
+.userInput {
+    padding-left: 12%;
+    padding-right: 17%;
+}
+
+.titolo {
+    padding-top: 5%;
+    color: #CAEF23;
+    text-align: left;
+}
+
+.buttonDiv {
+    padding-top: 1%;
+    width: 70%;
+    margin: auto;
+}
+
+#buttons {
+    padding-top: 5%; 
+    padding-bottom: 5%;
+    text-align: center;
+}
+
+.buttonDiv {
+    padding-top: 1%;
+    width: 70%;
+    margin: auto;
+}
+
+.creaButton {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    --color: #012D5E;
+    --background: #CAEF23;
+    --background-activated: #ffffff;
+}
+
+#fake-click {
+    display: none;
+}

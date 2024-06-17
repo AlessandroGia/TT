@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons class="backButtons" slot="start">
+      <ion-back-button class="back" defaultHref=""></ion-back-button>
+    </ion-buttons>
+    <ion-buttons *ngIf="isModificabile" class="nuovoTButtons" slot="end">
+      <ion-button class="nuovoTButton" (click)="aggiungiAllegato()"><ion-icon class="allegatoUpperIcons" name="add-circle-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <h1 class="allegatiTitle"><b>ALLEGATI</b></h1>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true" class="allegatiContent" *ngIf="!allegatiPresenti">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="divCentrato">
+    <div class="unimolLogoDiv">
+      <img class="unimolLogo" src="assets/images/unimolLogo.jpg" alt="unimolLogo">
+    </div>
+    Nessun allegato da visualizzare
+  </div>
+</ion-content>
+
+<ion-content class="allegatiContent" fullscreen="true" *ngIf="allegatiPresenti">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <ion-list [inset]="true">
+    <ion-item class="itemAllegati" *ngFor="let allegato of allegati" [button]="true" (click)="apriAllegato(allegato)">
+      <ion-input color="light" [clearInput]="true" [value]="allegato.nome + ' (' + allegato.nomeTipologia + ')'" [readonly]="true"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>

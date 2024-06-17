@@ -1,0 +1,96 @@
+ion-toolbar {
+    --background: #012D5E;
+}
+
+ion-input {
+    --color: #CAEF23;
+}
+
+.itemAttivita {
+    color: #ffffff;
+    padding-bottom: 4%;
+}
+
+.divCentrato {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    opacity: 0.5;
+    text-align: center;
+    font-size: x-large;
+    color: #ffffff;
+}
+.unimolLogoDiv {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 50%;
+    padding-top: 5%;
+    padding-bottom: 7%;
+}
+
+.unimolLogo {
+    margin: auto;
+    position: relative;
+    width: 80%;
+    height: 80%;
+}
+
+.attivitaTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: xx-large;
+    color: white;
+}
+
+.attivitaCompletamento {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    font-size: medium;
+    color: white;
+    margin-left: 5%;
+}
+
+.back {
+    --background: #012D5E;
+    color: #ffffff;
+}
+
+.backButtons {
+    top: 5%;
+    position: absolute;
+}
+
+.nuovaAButton {
+    margin-top:20%;
+    --background: #012D5E;
+    color: #ffffff;
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.nuovaAButtons {
+    margin-right: 3%;
+}
+
+.attivitaUpperIcons {
+    color: #ffffff;
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.attivitaContent {
+    --ion-background-color: #012D5E
+}
+
+ion-label strong {
+    display: block;
+    max-width: calc(100% - 60px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+ion-label ion-note {
+    font-size: 0.9rem;
+}

@@ -1,0 +1,57 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons class="backButtons" slot="start">
+      <ion-back-button class="back" defaultHref="elenco-attivita-tirocinio"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons *ngIf="isModificabile" class="eliminaAButtons" slot="end">
+      <ion-button class="eliminaAButton" (click)="eliminaAttivita()"><ion-icon class='attivitaUpperIcons' name="trash"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <h1 class="attivitaTitle"><b>ATTIVITÀ</b></h1>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="attivitaContent" fullscreen="true">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  <div class="mainDiv">
+    <div class="userInput">
+
+      <h3 class="titolo"><b>DATA</b></h3>
+      <ion-item>
+        <ion-input color="light" [clearInput]="true" [value]="data" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <h3 class="titolo"><b>ORARIO ENTRATA</b></h3>
+      <ion-item>
+        <ion-input color="light" [clearInput]="true" [value]="orarioEntrata" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <h3 class="titolo"><b>ORARIO USCITA</b></h3>
+      <ion-item>
+        <ion-input color="light" [clearInput]="true" [value]="orarioUscita" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <h3 class="titolo"><b>DURATA</b></h3>
+      <ion-item>
+        <ion-input color="light" [clearInput]="true" [readonly]="true" [value]="durata"></ion-input>
+      </ion-item>
+
+      <h3 class="titolo"><b>ATTIVITÀ SVOLTA</b> <ion-icon *ngIf="isModificabile" class="present-alert" name="pencil-outline"></ion-icon></h3>
+      <ion-item>
+        <ion-textarea *ngIf="isModificabile" [autoGrow]="true" color="light" placeholder="Inserire nota" [(ngModel)]="nota"></ion-textarea>
+        <ion-input *ngIf="!isModificabile" color="light" [clearInput]="true" [value]="attivitaSvolta" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <div id="buttons" *ngIf="isModificabile">
+        <div class="buttonDiv">
+          <ion-button class="creaButton" (click)="applicaModifiche()"><b>APPLICA</b></ion-button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</ion-content>

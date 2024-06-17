@@ -1,0 +1,119 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button class="back" defaultHref="home-studente-tesi"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <h1 class="visualizzazioneTesiTitle"><b>TESI</b></h1>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="visualizzazioneTesiContent" fullscreen="true">
+  <div class="mainDiv">
+    <div class="userInput">
+
+      <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+
+      <h3 class="titolo"><b>TITOLO</b> <ion-icon *ngIf="isModificabile" class="present-alert" name="pencil-outline"></ion-icon></h3>
+      <ion-item  *ngIf="isModificabile" [button]="true" (click)="presentTitoloAlert()">
+        <ion-input color="light" [clearInput]="true" placeholder="Nessun titolo" [value]="tesi?.tesi?.titolo" [readonly]="true"></ion-input>
+      </ion-item>
+      <ion-item  *ngIf="!isModificabile">
+        <ion-input color="light" [clearInput]="true" placeholder="Nessun titolo" [value]="tesi?.tesi?.titolo" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <h3 class="titolo"><b>INSEGNAMENTO</b></h3>
+      <ion-item id="insegnamento">
+        <ion-input color="light" [clearInput]="true" [value]="tesi?.tesi?.insegnamento" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <h3 class="titolo"><b>CORSO DI STUDI</b></h3>
+      <ion-item id="corsoDiStudi">
+        <ion-input color="light" [clearInput]="true" [value]="tesi?.tesi?.nomeCDS" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <h3 class="titolo"><b>RELATORE</b></h3>
+      <ion-item id="relatore">
+        <ion-input color="light" [clearInput]="true" [value]="tesi?.tesi?.relatore" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <h3 class="titolo"><b>CORRELATORI</b><ion-icon *ngIf="isModificabile" class="present-alert" name="pencil-outline"></ion-icon></h3>
+      <ion-item *ngIf="isModificabile" [button]="true" id="selezioneCorrelatori" (click)="openCorrelatoriModal()">
+        <ion-input color="light" [clearInput]="true" placeholder="0 correlatori selezionati" [value]="showedCorrelatoriSelezionati" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <ion-modal trigger="selezioneCorrelatori" #modalCorrelatori>
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-button class="modalUpperButtons" (click)="cancelCorrelatori()">Annulla</ion-button>
+              </ion-buttons>
+              <ion-buttons slot="end">
+                <ion-button class="modalUpperButtons" (click)="confirmCorrelatori()">Fatto</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+            <ion-toolbar>
+              <h3 class="modalTitle"><b>SELEZIONA CORRELATORI</b></h3>
+            </ion-toolbar>
+            <ion-toolbar>
+              <ion-searchbar [debounce]="500" (ionInput)="handleInputC($event)" animated="true" placeholder="Cerca..."></ion-searchbar>
+            </ion-toolbar>
+          </ion-header>
+          
+          <ion-content class="visualizzazioneTesiContent">
+            <ion-list id="modal-list" [inset]="true">
+              <ion-item class="item" *ngFor="let correlatori of showedRicercaCorrelatori">
+                <ion-checkbox [value]="correlatori" (ionChange)="gestisciCheckbox($event)" [checked]="correlatoriSelezionati.includes(correlatori)">{{ correlatori.nome }} {{ correlatori.cognome }}</ion-checkbox>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+      <ion-item *ngIf="!isModificabile">
+        <ion-input color="light" [clearInput]="true" placeholder="0 correlatori selezionati" [value]="showedCorrelatoriSelezionati" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <h3 class="titolo" *ngIf="isModificabile || tesi?.tesi?.dataDiscussione" ><b>DATA DISCUSSIONE</b><ion-icon *ngIf="isModificabile" class="present-alert" name="pencil-outline"></ion-icon></h3>
+      <ion-item *ngIf="isModificabile" [button]="true" (click)="openCalendar()" id="dataDiscussione">
+        <ion-input color="light" [clearInput]="true" placeholder="Nessuna data selezionata" [value]="tesi?.tesi?.dataDiscussione" [readonly]="true"></ion-input>
+
+        <ion-datetime-button datetime="datetime" id="fake-click"></ion-datetime-button>
+        <ion-modal [keepContentsMounted]="true" [isOpen]="showCalendar" (didDismiss)="cancelCalendar()">
+          <ng-template>
+            <ion-datetime
+              id="datetime"
+              presentation="date"
+              [showDefaultButtons]="true"
+              doneText="CONFERMA"
+              cancelText="ANNULLA"
+              [(ngModel)]="dataDiscussione"
+              (ionChange)="aggiornaData()"
+            ></ion-datetime>
+          </ng-template>
+        </ion-modal>
+      </ion-item>
+
+      <ion-item *ngIf="!isModificabile && tesi?.tesi?.dataDiscussione" id="dataDiscussione">
+        <ion-input color="light" [clearInput]="true" placeholder="Nessuna data selezionata" [value]="tesi?.tesi?.dataDiscussione" [readonly]="true"></ion-input>
+      </ion-item>
+
+
+
+      <h3 class="titolo" (click)="visualizzaAllegati()"><b>ALLEGATI ></b></h3>
+    </div>
+
+    <div id="buttons" *ngIf="isModificabile">
+      <div class="buttonDiv">
+        <ion-button class="creaButton" (click)="presentConcludiTesi()"><b>TESI CONCLUSA</b></ion-button>
+      </div>
+      <div class="buttonDiv">
+        <ion-button class="creaButton" (click)="presentEliminaTesi()"><b>ELIMINA TESI</b></ion-button>
+      </div>
+    </div>
+
+  </div>
+</ion-content>

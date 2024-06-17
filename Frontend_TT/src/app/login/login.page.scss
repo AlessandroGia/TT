@@ -1,0 +1,72 @@
+.loginTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    padding-top: 10%;
+    font-size: xx-large;
+    color: white;
+}
+
+ion-input {
+    --color: #ffffff;
+    --placeholder-color: #ffffff;
+}
+
+.test {
+    position: relative;
+}
+
+.loginTitle {
+    font-size: 180%;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;
+    color: #CAEF23;
+}
+
+.loginContent {
+    --ion-background-color: #012D5E
+}
+
+#caricamentoInCorso {
+    color: #CAEF23;
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif;;
+  }
+
+.warningText {
+    font-family: Arial, Helvetica, sans-serif;
+    color: white;
+    text-align: center;
+}
+
+.userInput {
+    padding-left: 12%;
+    padding-right: 17%;
+}
+
+.buttonDiv {
+    padding-top: 10%;
+    width: 70%;
+    margin: auto;
+}
+
+.loginButton {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    --color: #012D5E;
+    --background: #CAEF23;
+    --background-activated: #ffffff;
+}
+
+.unimolLogoDiv {
+  margin: auto;
+  width: 50%;
+  padding-top: 20%;
+}
+
+.unimolLogo {
+    margin: auto;
+    position: relative;
+    width: 80%;
+    height: 80%;
+}

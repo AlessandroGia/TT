@@ -1,0 +1,166 @@
+.homeStudenteTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: xx-large;
+    color: white;
+}
+
+.center-text {
+    font-size: 16px;
+}
+
+.homeStudenteNome {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    font-size: medium;
+    color: white;
+    margin-left: 5%;
+}
+
+.homeStudenteLogoTirocinio {
+    text-align: center;
+    font-size: xx-large;
+    color: white;
+    font-size: 24px;
+    margin-bottom: 4px;
+}
+
+.container {
+    min-height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.homeStudenteContent {
+    --ion-background-color: #012D5E
+}
+
+.divCentrato {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    opacity: 0.5;
+    text-align: center;
+    font-size: x-large;
+    color: #ffffff;
+}
+
+ion-toolbar {
+    --background: #012D5E;
+}
+
+.lowerToolbar {
+    --background: #012D5E;
+    color: #012D5E;
+}
+
+.mainDiv {
+    position: relative;
+}
+
+.logOut {
+    margin-top: 20%;
+    --background: #012D5E;
+    color: #ffffff;
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.logOutButtons {
+    margin-left: 3%;
+}
+
+.nuovoTButton {
+    margin-top:20%;
+    --background: #012D5E;
+    color: #ffffff;
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.nuovoTButtons {
+    margin-right: 3%;
+}
+
+.homeStudenteUpperIcons {
+    color: #ffffff;
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.homeStudenteLowerIconsTesi {
+    color: white;
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.homeStudenteLowerIconsTirocinio {
+    color: #012D5E;
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.homeStudenteTabBarTesi {
+    --background: #012D5E;
+    color: white;
+}
+
+.homeStudenteTabBarTirocinio {
+    --background: #CAEF23;
+    color: #012D5E;
+}
+
+.unimolLogoDiv {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 50%;
+    padding-top: 5%;
+    padding-bottom: 7%;
+}
+
+.unimolLogo {
+    margin: auto;
+    position: relative;
+    width: 80%;
+    height: 80%;
+}
+
+.tCard {
+    background-color: #CAEF23;
+    color: #012D5E;   
+}
+
+.tCardContent {
+    font-size: 150%;
+}
+
+.tCardP {
+    font-size: 90%;
+}
+
+.tTitle {
+    text-align: left;
+}
+
+.card-verde {
+    background-color: green;
+    color: #012D5E; 
+}
+
+.card-gialla {
+    background-color: #CAEF23;
+    color: #012D5E;
+}
+
+.card-bianca {
+    background-color: white;
+    color: #012D5E;
+}
+
+.card-rossa {
+    background-color: red;
+    color: #012D5E;
+}

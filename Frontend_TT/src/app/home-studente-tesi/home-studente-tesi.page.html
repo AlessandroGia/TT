@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons class="logOutButtons" slot="start">
+      <ion-button (click)="logOut()" class="logOut"><ion-icon class="homeStudenteUpperIcons" name="log-out-outline"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-buttons class="nuovoTButtons" slot="end" *ngIf="isStudente && toggleCreaTesi">
+      <ion-button class="nuovoTButton" (click)="creaNuovaTesi()"><ion-icon class="homeStudenteUpperIcons" name="add-circle-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <div style="background-color: transparent; width: 100%; text-align: center; color: white">
+      <ion-icon class="homeStudenteLogoTesi" name="book"></ion-icon> <br>
+      <span><b>TESI</b></span>
+    </div>
+  </ion-toolbar>
+
+  <ion-toolbar>
+    <ion-buttons slot="start" style="color: white;">
+      <ion-button [disabled]="allStati.length <= 1 || !tesiPresenti" (click)="presentFiltroStati()" style="color: white;">
+        <ion-icon slot="start" name="filter" style="color: white;"></ion-icon>
+        <div style="color: white;">Filtra</div>
+      </ion-button>
+    </ion-buttons>
+
+    <ion-buttons slot="end" style="color: white;">
+      <ion-button (click)="navigaTirocinio()" style="color: white;">
+        <div style="color: white;">Tirocini</div>
+        <ion-icon slot="end" name="desktop-outline" style="color: white;"></ion-icon>
+        <ion-icon slot="end" name="arrow-forward-outline" style="color: white;"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true" class="homeStudenteContent" *ngIf="!tesiPresenti">
+  
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="divCentrato">
+    <div class="unimolLogoDiv">
+      <img class="unimolLogo" src="assets/images/unimolLogo.jpg" alt="unimolLogo">
+    </div>
+    Nessuna tesi da visualizzare
+  </div>
+</ion-content>
+
+<ion-content class="homeStudenteContent" fullscreen="true" [class.active]="isCardActive" *ngIf="tesiPresenti">
+
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div class="mainDiv">
+    <ng-container *ngFor="let t of tesiRes">
+      <ion-card (click)="visualizzaTesi(t)" *ngIf="ruoloCorrente === t.ruoloUtente && statiCorrenti.includes(t.tesi.statoTesi)" [ngClass]="{'card-verde': t.tesi.statoTesi === 'IN_CORSO', 'card-gialla': t.tesi.statoTesi === 'DA_APPROVARE', 'card-bianca': t.tesi.statoTesi === 'CONCLUSA', 'card-rossa': t.tesi.statoTesi === 'ARCHIVIATA'}" color="light">
+        <ion-card-content class="tCardContent" >
+          <div *ngIf="t.ruoloUtente === 'STUDENTE'">
+            <b>Relatore: {{t.tesi.relatore}}</b> <br>
+          </div>
+          <div *ngIf="t.ruoloUtente === 'RELATORE' || t.ruoloUtente === 'CORRELATORE' ">
+            <b>Studente: {{t.tesi.studente}}</b> <br>
+          </div>
+          <b>CdL: {{t.tesi.nomeCDS}}</b> <br>
+        </ion-card-content>
+      </ion-card>
+    </ng-container>
+  </div>
+
+  <div class="unimolLogoDiv">
+    <img class="unimolLogo" src="assets/images/unimolLogo.jpg" alt="unimolLogo">
+  </div>
+
+</ion-content>
+
+<ion-footer *ngIf="tesiPresenti">
+  <ion-toolbar>
+
+    <ion-segment (ionChange)="segmentChanged($event)" [value]="ruoloCorrente">
+      <ion-segment-button *ngFor="let ruolo of allRuoli" [value]="ruolo" [disabled]="allRuoli.length === 1">
+        <ion-label>{{ ruolo }}</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+
+  </ion-toolbar>
+</ion-footer>

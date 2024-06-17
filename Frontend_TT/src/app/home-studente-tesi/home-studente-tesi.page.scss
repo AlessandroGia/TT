@@ -1,0 +1,195 @@
+.homeStudenteTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: large;
+    color: white;
+}
+
+.homeStudenteLogoTesi {
+    text-align: center;
+    font-size: xx-large;
+    color: white;
+}
+
+.homeStudenteNome {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: left;
+    font-size: medium;
+    color: white;
+    margin-left: 5%;
+}
+
+.divCentrato {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    opacity: 0.5;
+    text-align: center;
+    font-size: x-large;
+    color: #ffffff;
+}
+
+.homeStudenteContent {
+    --ion-background-color: #012D5E
+}
+
+ion-toolbar {
+    --background: #012D5E;
+}
+
+.lowerToolbar {
+    --background: #012D5E;
+    color: #012D5E;
+      
+}
+
+.mainDiv {
+    position: relative;
+}
+
+.logOut {
+    margin-top: 20%;
+    --background: #012D5E;
+    color: #ffffff;
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.logOutButtons {
+    margin-left: 3%;
+}
+
+.nuovoTButton {
+    margin-top:20%;
+    --background: #012D5E;
+    color: #ffffff;
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.nuovoTButtons {
+    margin-right: 3%;
+}
+
+.homeStudenteUpperIcons {
+    color: #ffffff;
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.homeStudenteLowerIconsTesi {
+    color: #012D5E;
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.homeStudenteLowerIconsTirocinio {
+    color: white;
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.homeStudenteTabBarTesi {
+    --background: #CAEF23;
+    color: #012D5E;
+}
+
+.homeStudenteTabBarTirocinio {
+    --background: #012D5E;
+    color: white;
+}
+
+.unimolLogoDiv {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 50%;
+    padding-top: 5%;
+    padding-bottom: 7%;
+}
+
+.unimolLogo {
+    margin: auto;
+    position: relative;
+    width: 80%;
+    height: 80%;
+}
+
+.tCard {
+    background-color: #CAEF23;
+    color: #012D5E;   
+}
+
+.tCardContent {
+    font-size: 150%;
+}
+
+.tCardP {
+    font-size: 90%;
+}
+
+.tTitle {
+    text-align: left;
+}
+
+.card-verde {
+    background-color: green;
+    color: #012D5E; 
+}
+
+.card-gialla {
+    background-color: #CAEF23;
+    color: #012D5E;
+}
+
+.card-bianca {
+    background-color: white;
+    color: #012D5E;
+}
+
+.card-rossa {
+    background-color: red;
+    color: #012D5E;
+}
+
+
+ion-footer {
+    background-color: #012D5E;
+    .tab_container{
+        background-size: 100%;
+        background-repeat: no-repeat;
+        text-align: center;
+        color: #ffffff;
+        .selected{
+            color: #CAEF23;
+            opacity: 1 !important;
+        }
+        .tab_button{
+            width: 50%;
+            display: inline-block;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            .img{
+                height: 20px;
+                display: block;
+                margin: auto;
+                color: #ffffff;
+            }
+            .img-select{
+                height: 20px;
+                display: block;
+                margin: auto;
+                color: #CAEF23;
+            }
+            .label{
+                margin: 0px;
+                font-size: 11px;
+                text-align: center;
+                padding: 7px 0px;
+                font-family: exo2-medium;
+                opacity: 0.6;
+            }  
+        }
+    }
+}

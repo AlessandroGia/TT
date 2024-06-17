@@ -1,0 +1,94 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button class="back" defaultHref="home-studente-tirocinio"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <h1 class="visualizzazioneTirocinioTitle"><b>TIROCINIO</b></h1>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="visualizzazioneTirocinioContent" fullscreen="true">
+  <div class="mainDiv">
+    <div class="userInput">
+
+      <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+
+      <h3 class="titolo"><b>LABORATORIO</b></h3>
+      <ion-item>
+        <ion-input color="light" [clearInput]="true" [value]="tirocinio?.tirocinio?.laboratorio" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <h3 class="titolo"><b>TUTOR</b></h3>
+      <ion-item>
+        <ion-input color="light" [clearInput]="true" [value]="tirocinio?.tirocinio?.tutor" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <h3 class="titolo"><b>COMPLETAMENTO</b><ion-icon *ngIf="isModificabile" class="present-alert" name="pencil-outline"></ion-icon></h3>
+      <ion-item [button]="true" (click)="elencoAttivita()">
+        <ion-input color="light" [clearInput]="true" [value]="completamento" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <h3 class="titolo"><b>CORSO DI STUDI</b></h3>
+      <ion-item>
+        <ion-input color="light" [clearInput]="true" [value]="tirocinio?.tirocinio?.nomeCDS" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <h3 class="titolo"><b>COLLABORATORI</b><ion-icon *ngIf="isModificabile" class="present-alert" name="pencil-outline"></ion-icon></h3>
+      <ion-item *ngIf="isModificabile" [button]="true" id="selezioneCollaboratori">
+        <ion-input color="light" [clearInput]="true" placeholder="0 collaboratori selezionati" [value]="showedCollaboratoriSelezionati" [readonly]="true"></ion-input>
+      </ion-item>
+      <ion-modal trigger="selezioneCollaboratori" #modalCollaboratori>
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-button class="modalUpperButtons" (click)="cancelCollaboratori()">Annulla</ion-button>
+              </ion-buttons>
+              <ion-buttons slot="end">
+                <ion-button class="modalUpperButtons" (click)="confirmCollaboratori()">Fatto</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+            <ion-toolbar>
+              <h3 class="modalTitle"><b>SELEZIONA COLLABORATORI</b></h3>
+            </ion-toolbar>
+            <ion-toolbar>
+              <ion-searchbar [debounce]="500" (ionInput)="handleInputC($event)" animated="true" placeholder="Cerca..."></ion-searchbar>
+            </ion-toolbar>
+          </ion-header>
+          
+          <ion-content class="visualizzazioneTirocinioContent">
+            <ion-list id="modal-list" [inset]="true">
+              <ion-item class="item" *ngFor="let collaboratore of showedRicercaCollaboratori">
+                <ion-checkbox [value]="collaboratore" (ionChange)="gestisciCheckbox($event)" [checked]="collaboratoriSelezionati.includes(collaboratore)">{{ collaboratore.nome }} {{ collaboratore.cognome }}</ion-checkbox>
+              </ion-item>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+      <ion-item *ngIf="!isModificabile">
+        <ion-input color="light" [clearInput]="true" placeholder="0 collaboratori selezionati" [value]="showedCollaboratoriSelezionati" [readonly]="true"></ion-input>
+      </ion-item>
+
+      
+
+      <h3 class="titolo" (click)="visualizzaAllegati()"><b>ALLEGATI ></b></h3>
+    </div>
+
+    <div id="buttons" *ngIf="isModificabile">
+      <div class="buttonDiv">
+        <ion-button class="creaButton" (click)="navigaLibrettoDiario()"><b>GENERA LIBRETTO DIARIO</b></ion-button>
+      </div>
+      <div class="buttonDiv">
+        <ion-button class="creaButton" (click)="verificaConclusioneTirocinio()"><b>TIROCINIO COMPLETATO</b></ion-button>
+      </div>
+      <div class="buttonDiv">
+        <ion-button class="creaButton" (click)="presentEliminaTirocinio()"><b>ELIMINA TIROCINIO</b></ion-button>
+      </div>
+    </div>
+
+  </div>
+</ion-content>

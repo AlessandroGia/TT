@@ -1,0 +1,86 @@
+ion-toolbar {
+    --background: #012D5E
+}
+
+ion-searchbar {
+    --background: #ffffff;
+    --color: #012D5E;
+    --icon-color: #012D5E;
+    --clear-button-color: #012D5E;
+}
+
+ion-input {
+    --color: #ffffff;
+    --placeholder-color: #ffffff;
+}
+
+ion-checkbox {
+    --checkbox-background-checked: #012D5E;
+    --border-color-checked: #012D5E;
+    --checkmark-color: #CAEF23;
+    --checkmark-width: 5%;
+}
+
+.nuovaTesiTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: xx-large;
+    color: white;
+}
+
+.item {
+    --color: #ffffff;
+}
+
+.radio {
+    --color-checked: #CAEF23;
+}
+
+.userInput {
+    padding-left: 12%;
+    padding-right: 17%;
+}
+
+.back {
+    --background: #012D5E;
+    color: #ffffff;
+}
+
+.mainDiv {
+    position: relative;
+}
+
+.nuovaTesiContent {
+    --ion-background-color: #012D5E
+}
+
+.modalUpperButtons {
+    --color: #ffffff;
+}
+
+.modalTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: #CAEF23;
+}
+
+.buttonDiv {
+    padding-top: 10%;
+    width: 70%;
+    margin: auto;
+}
+
+.creaButton {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    --color: #012D5E;
+    --background: #CAEF23;
+    --background-activated: #ffffff;
+}
+
+.titolo {
+    padding-top: 5%;
+    color: #CAEF23;
+    text-align: left;
+}

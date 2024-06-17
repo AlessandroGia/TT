@@ -1,0 +1,77 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button class="back" defaultHref=""></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <h1 class="allegatiTitle"><b>AGGIUNGI ALLEGATO</b></h1>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="allegatiContent" fullscreen="true">
+  <div class="mainDiv">
+    <div class="userInput">
+
+      <h3 class="titolo"><b>NOME *</b></h3>
+      <ion-item>
+        <ion-input color="light" [clearInput]="true" placeholder="Inserire nome" [(ngModel)]="nomeAllegato"></ion-input>
+      </ion-item>
+
+      <h3 class="titolo"><b>TIPOLOGIA *</b></h3>
+      <ion-item [button]="true" id="selezioneTipologia">
+        <ion-input color="light" [clearInput]="true" [readonly]="true" placeholder="Inserire tipologia" [value]="showedTipologiaSelezionata"></ion-input>
+      </ion-item>
+
+      <ion-modal trigger="selezioneTipologia" #modalTipologia>
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-button class="modalUpperButtons" (click)="cancelTipologia()">Annulla</ion-button>
+              </ion-buttons>
+              <ion-buttons slot="end">
+                <ion-button class="modalUpperButtons" (click)="confirmTipologia()">Fatto</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+            <ion-toolbar>
+              <h3 class="modalTitle"><b>SELEZIONA TIPOLOGIA</b></h3>
+            </ion-toolbar>
+            <ion-toolbar>
+              <ion-searchbar [debounce]="500" (ionInput)="handleInputT($event)" animated="true" placeholder="Cerca..."></ion-searchbar>
+            </ion-toolbar>
+          </ion-header>
+          
+          <ion-content class="allegatiContent">
+            <ion-list id="modal-list" [inset]="true">
+              <ion-radio-group [(ngModel)]="tipologiaSelezionata">
+                <ion-item class="item" *ngFor="let tipologia of showedRicercaTipologia">
+                  <ion-radio class="radio" [value]="tipologia" (click)="gestisciCheckTipologie(tipologia)">{{ tipologia.nomeTipologia }}</ion-radio>
+                </ion-item>
+            </ion-radio-group>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+
+      <h3 class="titolo"><b>NOTA</b></h3>
+      <ion-item>
+        <ion-textarea [autoGrow]="true" color="light" placeholder="Inserire nota" [(ngModel)]="nota"></ion-textarea>
+      </ion-item>
+
+        <h3 class="titolo" (click)="selectFile()">
+          <input type="file" id="fileInput" hidden (change)="onFileSelected($event)"  accept=".pdf,.doc,.docx,.png,.jpg,.jpeg">
+          <b>ALLEGA FILE</b> 
+          <ion-icon *ngIf="fileSelezionato !== undefined && fileSelezionato !== null" class="present-alert" name="document-attach-outline"></ion-icon>
+          <ion-icon *ngIf="fileSelezionato === undefined || fileSelezionato === null" class="present-alert" name="attach-outline"></ion-icon> 
+        </h3>
+
+    </div>
+  </div>
+
+  <div id="buttons">
+    <div class="buttonDiv">
+      <ion-button class="creaButton" (click)="conferma()"><b>CONFERMA</b></ion-button>
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,48 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: "ttbackend"
+    depends_on:
+      - ttdb
+    ports:
+      - "8080:8080"
+
+  webserver:
+    build:
+      context: web-server-inserimento-interni/.
+    container_name: "ttwebserver"
+    depends_on:
+      - backend
+    ports:
+      - "5050:5000"
+
+  ttdb:
+     container_name: "ttdb"
+     environment:
+       - MARIADB_DATABASE=${MARIADB_DATABASE}
+       - MARIADB_USER=${MARIADB_USER}
+       - MARIADB_PASSWORD=${MARIADB_PASSWORD}
+       - MARIADB_ROOT_PASSWORD=${MARIADB_ROOT_PASSWORD}
+     image: "mariadb:10.11"
+     ports:
+       - "3306:3306"
+     restart: always
+     volumes:
+       - ttdb-volume:/var/lib/mysql
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    restart: always
+    environment:
+      PMA_HOST: ttdb
+      PMA_USER: tt
+      PMA_PASSWORD: tt
+    ports:
+      - 8090:80
+    depends_on:
+      - ttdb
+
+volumes:
+  ttdb-volume:

@@ -1,0 +1,126 @@
+ion-toolbar {
+    --background: #012D5E;
+}
+
+ion-searchbar {
+    --background: #ffffff;
+    --color: #012D5E;
+    --icon-color: #012D5E;
+    --clear-button-color: #012D5E;
+}
+
+ion-input {
+    --color: #ffffff;
+    --placeholder-color: #ffffff;
+}
+
+
+ion-datetime {
+    --background: #CAEF23;
+    --title-color: #012D5E;
+}
+
+
+
+ion-datetime::part(calendar-day) {
+    color: #012D5E;
+}
+
+ion-datetime::part(calendar-day):active:focus {
+    background-color: #ffffff;
+}
+
+ion-datetime::part(calendar-day):focus {
+    background-color: #ffffff;
+}
+
+.radio {
+    --color-checked: #CAEF23;
+}
+
+.modalUpperButtons {
+    --color: #ffffff;
+}
+
+.back {
+    --background: #012D5E;
+    color: #ffffff;
+}
+
+.librettoDiarioTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: xx-large;
+    color: white;
+}
+
+.librettoDiarioContent {
+    --ion-background-color: #012D5E
+}
+
+.item {
+    --color: #ffffff;
+}
+
+.mainDiv {
+    position: relative;
+}
+
+.titolo {
+    padding-top: 5%;
+    color: #CAEF23;
+    text-align: left;
+}
+
+.userInput {
+    padding-left: 12%;
+    padding-right: 17%;
+}
+
+.mainDiv {
+    position: relative;
+}
+
+.buttonDiv {
+    padding-top: 5%;
+    width: 70%;
+    margin: auto;
+}
+
+.creaButton {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    --color: #012D5E;
+    --background: #CAEF23;
+    --background-activated: #ffffff;
+}
+
+#buttons {
+    padding-top: 5%; 
+    padding-bottom: 5%;
+}
+
+.buttonDiv {
+    padding-top: 1%;
+    width: 70%;
+    margin: auto;
+}
+
+.librettoDiarioContent {
+    --ion-background-color: #012D5E
+}
+
+.present-alert {
+    margin-left: 3%;
+}
+
+.modalTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: #CAEF23;
+}
+
+#fake-click {
+    display: none;
+}

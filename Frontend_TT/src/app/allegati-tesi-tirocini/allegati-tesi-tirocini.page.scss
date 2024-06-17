@@ -1,0 +1,89 @@
+ion-toolbar {
+    --background: #012D5E;
+}
+
+ion-input {
+    --color: #CAEF23;
+}
+
+.itemAllegati {
+    color: #ffffff;
+    padding-bottom: 4%;
+}
+
+.divCentrato {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translateX(-50%) translateY(-50%);
+    opacity: 0.5;
+    text-align: center;
+    font-size: x-large;
+    color: #ffffff;
+}
+
+.unimolLogoDiv {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    width: 50%;
+    padding-top: 5%;
+    padding-bottom: 7%;
+}
+
+.unimolLogo {
+    margin: auto;
+    position: relative;
+    width: 80%;
+    height: 80%;
+}
+
+.allegatiTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: xx-large;
+    color: white;
+}
+
+.back {
+    --background: #012D5E;
+    color: #ffffff;
+}
+
+.backButtons {
+    top: 5%;
+    position: absolute;
+}
+
+.nuovoTButton {
+    margin-top:20%;
+    --background: #012D5E;
+    color: #ffffff;
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.nuovoTButtons {
+    margin-right: 3%;
+}
+
+.allegatoUpperIcons {
+    color: #ffffff;
+    width: 2.5em;
+    height: 2.5em;
+}
+
+.allegatiContent {
+    --ion-background-color: #012D5E
+}
+
+ion-label strong {
+    display: block;
+    max-width: calc(100% - 60px);
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+ion-label ion-note {
+    font-size: 0.9rem;
+}

@@ -1,0 +1,149 @@
+ion-toolbar {
+    --background: #012D5E;
+}
+
+ion-searchbar {
+    --background: #ffffff;
+    --color: #012D5E;
+    --icon-color: #012D5E;
+    --clear-button-color: #012D5E;
+}
+
+ion-input {
+    --color: #ffffff;
+    --placeholder-color: #ffffff;
+}
+
+ion-checkbox {
+    --checkbox-background-checked: #012D5E;
+    --border-color-checked: #012D5E;
+    --checkmark-color: #CAEF23;
+    --checkmark-width: 5%;
+}
+
+ion-datetime {
+    --background: #CAEF23;
+    --title-color: #012D5E;
+}
+
+ion-datetime::part(calendar-day) {
+    color: #012D5E;
+}
+
+ion-datetime::part(calendar-day):active:focus {
+    background-color: #ffffff;
+}
+
+ion-datetime::part(calendar-day):focus {
+    background-color: #ffffff;
+}
+
+.modalUpperButtons {
+    --color: #ffffff;
+}
+
+.back {
+    --background: #012D5E;
+    color: #ffffff;
+}
+
+.radio {
+    --color-checked: #CAEF23;
+}
+
+.modalTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    color: #CAEF23;
+}
+
+.visualizzazioneTirocinioTitle {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+    font-size: xx-large;
+    color: white;
+}
+
+.visualizzazioneTirocinioContent {
+    --ion-background-color: #012D5E
+}
+
+.item {
+    --color: #ffffff;
+}
+
+.mainDiv {
+    position: relative;
+}
+
+.titolo {
+    padding-top: 5%;
+    color: #CAEF23;
+    text-align: left;
+}
+
+.item {
+    --color: #ffffff;
+}
+
+.userInput {
+    padding-left: 12%;
+    padding-right: 17%;
+}
+
+.back {
+    --background: #012D5E;
+    color: #ffffff;
+}
+
+.mainDiv {
+    position: relative;
+}
+
+.buttonDiv {
+    padding-top: 5%;
+    width: 70%;
+    margin: auto;
+}
+
+.creaButton {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    --color: #012D5E;
+    --background: #CAEF23;
+    --background-activated: #ffffff;
+}
+
+#buttons {
+    padding-top: 5%; 
+    padding-bottom: 5%;
+}
+
+.buttonDiv {
+    padding-top: 1%;
+    width: 70%;
+    margin: auto;
+}
+
+.correlatore {
+    width: 100%;
+}
+
+.nomeCorrelatore{
+    width: 90%;
+    float: left;
+}
+
+.eliminaCorrelatore {
+    position: right;
+    float: right;
+}
+
+.present-alert {
+    margin-left: 3%;
+}
+
+#fake-click {
+    display: none;
+}

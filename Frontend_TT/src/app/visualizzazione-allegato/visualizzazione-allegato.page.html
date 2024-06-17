@@ -1,0 +1,85 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons class="backButtons" slot="start">
+      <ion-back-button class="back" defaultHref=""></ion-back-button>
+    </ion-buttons>
+    <ion-buttons *ngIf="isModificabile" class="eliminaAButtons" slot="end">
+      <ion-button class="eliminaAButton" (click)="eliminaAllegato()"><ion-icon class='homeStudenteUpperIcons' name="trash"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <h1 class="allegatiTitle"><b>{{allegato?.nome}}</b></h1>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="allegatiContent" fullscreen="true">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="mainDiv">
+    <div class="userInput">
+      <h3 class="titolo"><b>NOME</b> <ion-icon *ngIf="isModificabile" class="present-alert" name="pencil-outline"></ion-icon></h3>
+      <ion-item *ngIf="isModificabile" (click)="presentTitoloAlert()">
+        <ion-input color="light" [clearInput]="true" placeholder="Nessun titolo" [value]="nuovoNome" [readonly]="true"></ion-input>
+      </ion-item>
+      <ion-item *ngIf="!isModificabile">
+        <ion-input color="light" [clearInput]="true" placeholder="Nessun titolo" [value]="nuovoNome" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <h3 class="titolo"><b>TIPOLOGIA</b> <ion-icon *ngIf="isModificabile" class="present-alert" name="pencil-outline"></ion-icon></h3>
+      <ion-item *ngIf="isModificabile" [button]="true" id="selezioneTipologia">
+        <ion-input color="light" [clearInput]="true" placeholder="Tipologia" [readonly]="true" [value]="showedTipologiaSelezionata"></ion-input>
+      </ion-item>
+
+      <ion-modal trigger="selezioneTipologia" #modalTipologia>
+        <ng-template>
+          <ion-header>
+            <ion-toolbar>
+              <ion-buttons slot="start">
+                <ion-button class="modalUpperButtons" (click)="cancelTipologia()">Annulla</ion-button>
+              </ion-buttons>
+              <ion-buttons slot="end">
+                <ion-button class="modalUpperButtons" (click)="confirmTipologia()">Fatto</ion-button>
+              </ion-buttons>
+            </ion-toolbar>
+            <ion-toolbar>
+              <h3 class="modalTitle"><b>SELEZIONA TIPOLOGIA</b></h3>
+            </ion-toolbar>
+            <ion-toolbar>
+              <ion-searchbar [debounce]="500" (ionInput)="handleInputT($event)" animated="true" placeholder="Cerca..."></ion-searchbar>
+            </ion-toolbar>
+          </ion-header>
+          
+          <ion-content class="allegatiContent">
+            <ion-list id="modal-list" [inset]="true">
+              <ion-radio-group [(ngModel)]="tipologiaSelezionata">
+                <ion-item class="item" *ngFor="let tipologia of showedRicercaTipologia">
+                  <ion-radio class="radio" [value]="tipologia" (click)="gestisciCheckTipologie(tipologia)">{{ tipologia.nomeTipologia }}</ion-radio>
+                </ion-item>
+            </ion-radio-group>
+            </ion-list>
+          </ion-content>
+        </ng-template>
+      </ion-modal>
+
+      <ion-item *ngIf="!isModificabile">
+        <ion-input color="light" [clearInput]="true" placeholder="Tipologia" [readonly]="true" [value]="showedTipologiaSelezionata"></ion-input>
+      </ion-item>
+
+      <h3 class="titolo"><b>NOTA</b> <ion-icon *ngIf="isModificabile" class="present-alert" name="pencil-outline"></ion-icon></h3>
+      <ion-item>
+        <ion-textarea *ngIf="isModificabile" [autoGrow]="true"  color="light"  placeholder="Inserisci nota" [(ngModel)]="nuovaNota"></ion-textarea>
+        <ion-input *ngIf="!isModificabile" color="light" [clearInput]="true" placeholder="Nessuna nota" [value]="nuovaNota" [readonly]="true"></ion-input>
+      </ion-item>
+
+      <h3 class="titolo" (click)="scaricaFile()"><b>APRI FILE > </b></h3>
+
+    </div>
+  </div>
+
+  <div id="buttons"  *ngIf="isModificabile">
+    <div class="buttonDiv">
+      <ion-button class="creaButton" (click)="confermaModifiche()"><b>APPLICA</b></ion-button>
+    </div>
+  </div>
+</ion-content>

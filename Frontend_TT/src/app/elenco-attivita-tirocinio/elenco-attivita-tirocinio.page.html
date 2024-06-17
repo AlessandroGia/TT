@@ -1,0 +1,39 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons class="backButtons" slot="start">
+      <ion-back-button class="back" defaultHref="visualizzazione-tirocinio"></ion-back-button>
+    </ion-buttons>
+    <ion-buttons class="nuovaAButtons" slot="end" *ngIf="isModificabile && !oreSuperate">
+      <ion-button class="nuovaAButton" (click)="aggiungiAttivita()"><ion-icon class="attivitaUpperIcons" name="add-circle-outline"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+  <ion-toolbar>
+    <h1 class="attivitaTitle"><b>ATTIVITÀ TIROCINIO</b></h1>
+    <h3 class="attivitaCompletamento">{{completamento}}</h3>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content fullscreen="true" class="attivitaContent" *ngIf="!attivitaPresenti">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  
+  <div class="divCentrato">
+    <div class="unimolLogoDiv">
+      <img class="unimolLogo" src="assets/images/unimolLogo.jpg" alt="unimolLogo">
+    </div>
+    Nessuna attivita' da visualizzare
+  </div>
+</ion-content>
+
+<ion-content class="attivitaContent" fullscreen="true" *ngIf="attivitaPresenti">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>  
+
+  <ion-list [inset]="true">
+    <ion-item class="itemAttivita" *ngFor="let attivita of elencoAttivita?.elencoAttivita" [button]="true" (click)="apriAttivita(attivita)">
+      <ion-input color="light" [clearInput]="true" [value]="attivita.data + ' | ' + attivita.orarioEntrata + ' - ' + attivita.orarioUscita + ' | ' + getDurata(attivita.ore, attivita.minuti) "  [readonly]="true"></ion-input>
+    </ion-item>
+  </ion-list>
+</ion-content>
