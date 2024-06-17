@@ -1,7 +1,0 @@
-PRIMA DI INIZIARE E OGNI TANTO
-git pull
-
-PER SALVARE LE MODIFICHE
-git add --all
-git commit -m 'messaggio esempio'
-git push
