@@ -31,6 +31,8 @@ export class HttpinterceptorService implements HttpInterceptor {
         headers: req.headers.set('Authorization', `Bearer ${this.sharedService.getJwt()}`)
       });
     }
+
+    console.log('Request', req);
     
     return next.handle(req).pipe(
       timeout(this.DEFAULT_TIMEOUT),

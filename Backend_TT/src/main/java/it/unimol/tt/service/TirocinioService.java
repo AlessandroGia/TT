@@ -406,6 +406,10 @@ public class TirocinioService {
     }
 
     public Resource generaLibrettoDiario(LibrettoDiarioRequest librettoDiarioRequest) throws IOException, InterruptedException {
+
+        String[] paths = { "allegati", "tirocini", librettoDiarioRequest.getIdTirocinio().toString(), "libretto_diario", librettoDiarioRequest.getIdTirocinio().toString(), ".pdf" };
+
+
         String outputPath = "allegati//tirocini//" + librettoDiarioRequest.getIdTirocinio() + "//libretto_diario//" + librettoDiarioRequest.getIdTirocinio() + ".pdf";
 
         Tirocinio tirocinio = this.tirocinioRepository.findTirocinioById(librettoDiarioRequest.getIdTirocinio());
