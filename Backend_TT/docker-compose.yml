@@ -11,7 +11,7 @@ services:
 
   webserver:
     build:
-      context: web-server-inserimento-interni/.
+      context: WebPage-Direttore/.
     container_name: "ttwebserver"
     depends_on:
       - backend
