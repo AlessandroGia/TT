@@ -2,6 +2,7 @@
 # http://git-scm.com/docs/gitignore
 
 .DS_Store
+.config-app.json
 
 *~
 *.sw[mnpcod]
