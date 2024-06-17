@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpEvent, HttpInterceptor, HttpHandler, HttpRequest, HttpErrorResponse } from '@angular/common/http';
-import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { Observable, TimeoutError, throwError } from 'rxjs';
+import { catchError, timeout } from 'rxjs/operators';
 import { NavController, ToastController } from '@ionic/angular';
 import { SharedService } from '../shared/shared.service';
 import { LogoutService } from '../logout/logout.service';
@@ -11,6 +11,8 @@ import { LogoutService } from '../logout/logout.service';
   providedIn: 'root'
 })
 export class HttpinterceptorService implements HttpInterceptor {
+
+  private DEFAULT_TIMEOUT = 20000;
 
   constructor(
     private navController: NavController,
@@ -29,10 +31,12 @@ export class HttpinterceptorService implements HttpInterceptor {
     }
     
     return next.handle(req).pipe(
+      timeout(this.DEFAULT_TIMEOUT),
       catchError((error: HttpErrorResponse) => {
-        console.log('Intercepted HTTP call', error);
         let errorMessage = '';
-        if (error.error instanceof ErrorEvent) {
+        if (error instanceof TimeoutError) {
+          errorMessage = 'Timeout della richiesta';
+        } else if (error.error instanceof ErrorEvent) {
           errorMessage = `Errore di rete`;
         } else {
           switch (error.status) {

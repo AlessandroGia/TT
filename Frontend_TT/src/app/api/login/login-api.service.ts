@@ -1,10 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from  '@angular/common/http';
-import { Observable, catchError } from 'rxjs';
+import { Observable, catchError, timeout } from 'rxjs';
 import { LoginPOSTRequest } from 'src/app/interfaces/api/login/login-request-interface';
 import { LoginResponse } from 'src/app/interfaces/api/login/login-response-interface';
 import { ApiServiceService } from 'src/app/services/api/api-service.service';
 import { NavController, ToastController } from '@ionic/angular';
+
 
 
 @Injectable({
@@ -29,6 +30,6 @@ export class LoginApiService {
       nomeUtente,
       password,
     };
-    return this.http.post<LoginResponse>(this.url, req);
+    return this.http.post<LoginResponse>(this.url, req)
   }
 }

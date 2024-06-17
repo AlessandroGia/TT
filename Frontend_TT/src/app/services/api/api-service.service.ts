@@ -5,12 +5,12 @@ import { Injectable } from '@angular/core';
 })
 export class ApiServiceService {
 
-  ip = "192.168.1.9"
-  port = "8080"
+  private ip = "192.168.1.9"
+  private port = "8080"
 
   constructor() { }
   
   // Root endpoint
-  public url = `http:/${this.ip}:${this.port}//api/v1`;
+  public url = `http://${this.ip}:${this.port}/api/v1`;
   
 }
