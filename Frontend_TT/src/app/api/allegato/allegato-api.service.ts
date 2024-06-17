@@ -3,15 +3,8 @@ import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { ApiServiceService } from 'src/app/services/api/api-service.service';
 import { AllegatoPUTRequest } from 'src/app/interfaces/api/allegato/allegato-request-interface';
-import { AllegatoTipologiaResponse } from 'src/app/interfaces/api/allegato/allegato-response-interface';
 import { Allegato } from 'src/app/interfaces/primitive/allegato-interface';
 import { Tipologia } from 'src/app/interfaces/primitive/tipologia-interface';
-
-import { Directory, Filesystem, Encoding } from '@capacitor/filesystem'
-import { FileOpener, FileOpenerOptions } from '@capacitor-community/file-opener';
-import { Platform } from '@ionic/angular';
-import { Capacitor } from '@capacitor/core';
-
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +13,7 @@ export class AllegatoApiService {
 
   url = "";
 
-  constructor(private http: HttpClient, private ApiService: ApiServiceService, private platform: Platform) {
+  constructor(private http: HttpClient, private ApiService: ApiServiceService) {
     this.url = this.ApiService.url;
   }
 

@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { Directory, Filesystem, Encoding } from '@capacitor/filesystem'
 import { FileOpener, FileOpenerOptions } from '@capacitor-community/file-opener';
 import { Capacitor } from '@capacitor/core';
+import { Platform } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FileHandlerService {
-  platform: any;
 
-  constructor() { }
+  constructor(private platform: Platform) { }
 
 
   private convertBlobToBase64 = (blob: Blob) => new Promise((resolve, reject) => {
@@ -59,7 +59,6 @@ export class FileHandlerService {
         });
 
         const finalPath = Capacitor.convertFileSrc(fileUri.uri);
-        console.log(finalPath)
 
 
         const fileOpenerOptions: FileOpenerOptions = {
