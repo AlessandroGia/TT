@@ -9,6 +9,7 @@ import { Tipologia } from '../interfaces/primitive/tipologia-interface';
 import { AllegatoService } from '../services/allegato/allegato.service';
 import { TirocinioService } from '../services/tirocinio/tirocinio.service';
 import { TesiService } from '../services/tesi/tesi.service';
+import { FileHandlerService } from '../services/file-handler/file-handler.service';
 
 @Component({
   selector: 'app-visualizzazione-allegato',
@@ -53,7 +54,8 @@ export class VisualizzazioneAllegatoPage {
     private allegatoApiService: AllegatoApiService,
     private allegatoService: AllegatoService,
     private tesiService: TesiService,
-    private tirocinioService: TirocinioService ) {
+    private tirocinioService: TirocinioService,
+    private fileHandlerService: FileHandlerService) { 
 
     this.route.queryParams.subscribe(params => {
 
@@ -281,11 +283,11 @@ export class VisualizzazioneAllegatoPage {
     if (await this.aggiorna()) {
       if (this.typeAllegato === "tesi") {
         this.allegatoApiService.scaricaAllegatoTesi(this.idAllegato).subscribe((res) => {
-          this.allegatoApiService.scaricaEApriFile(res.data, res.filename);
+          this.fileHandlerService.scaricaEApriFile(res.data, res.filename);
         });
       } else if (this.typeAllegato === "tirocinio") {
         this.allegatoApiService.scaricaAllegatoTirocinio(this.idAllegato).subscribe((res) => {
-          this.allegatoApiService.scaricaEApriFile(res.data, res.filename);
+          this.fileHandlerService.scaricaEApriFile(res.data, res.filename);
         });
       }
     }

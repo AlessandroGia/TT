@@ -6,6 +6,7 @@ import { ActivatedRoute } from '@angular/router';
 import { LibrettoDiarioApiService } from '../api/libretto-diario/libretto-diario-api.service';
 import { SharedService } from '../services/shared/shared.service';
 import { Utente } from '../interfaces/primitive/utente-interface';
+import { FileHandlerService } from '../services/file-handler/file-handler.service';
 
 @Component({
   selector: 'app-libretto-diario',
@@ -38,7 +39,16 @@ export class LibrettoDiarioPage {
   private vecchioTutor: Utente | undefined = undefined;
   showedTutorSelezionato: string = "";
 
-  constructor(private alertController: AlertController, private navCtrl: NavController, private toastController: ToastController, private route: ActivatedRoute, private librettoDiaroApiService: LibrettoDiarioApiService, private sharedService: SharedService) { 
+  constructor(
+    private alertController: AlertController,
+    private navCtrl: NavController, 
+    private toastController: ToastController, 
+    private route: ActivatedRoute, 
+    private librettoDiaroApiService: LibrettoDiarioApiService, 
+    private sharedService: SharedService,
+    private fileHandlerService: FileHandlerService
+  ) { 
+
     this.route.queryParams.subscribe(params => {
       this.tirocinio = JSON.parse(params["obj"]);
       this.inizializzaDati();
@@ -178,7 +188,7 @@ export class LibrettoDiarioPage {
 
 
 
-  public genera() {
+  public async genera() {
     
     if (this.tirocinio !== null) {
       if (this.dataPFFormattata === undefined || this.dataPFFormattata === null || this.dataPFFormattata === "")
@@ -192,9 +202,10 @@ export class LibrettoDiarioPage {
       else if (new Date(this.dataFFormattata).getTime() - new Date(this.dataIFormattata).getTime() <= 0 )
         this.presentToast("La data di fine attivita' non e' valida");
       else {
-        this.librettoDiaroApiService.generaLibrettoDiario(this.tirocinio.id, this.dataPFFormattata, this.tutorSelezionato.nome, this.dataIFormattata, this.dataFFormattata, this.nota).subscribe((res) => {
+        this.librettoDiaroApiService.generaLibrettoDiario(this.tirocinio.id, this.dataPFFormattata, this.tutorSelezionato.nome, this.dataIFormattata, this.dataFFormattata, this.nota).subscribe(async (res) => {
           this.salvaFile(res);
-          //this.navCtrl.navigateBack(['/visualizzazione-tirocinio']);
+          await this.fileHandlerService.scaricaEApriFile(res.data, res.filename);
+          this.navCtrl.navigateBack(['/visualizzazione-tirocinio']);
         });
       }
     }

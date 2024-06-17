@@ -12,7 +12,9 @@ import { LogoutService } from '../logout/logout.service';
 })
 export class HttpinterceptorService implements HttpInterceptor {
 
-  private DEFAULT_TIMEOUT = 20000;
+  private isToastVisible: boolean = false;
+
+  private DEFAULT_TIMEOUT: number = 20000;
 
   constructor(
     private navController: NavController,
@@ -45,6 +47,7 @@ export class HttpinterceptorService implements HttpInterceptor {
               break;
             case 403:
               errorMessage = 'Sessione scaduta';
+              this.logoutService.logOut();
               this.navController.navigateRoot('/login');
               console.log('Sessione scaduta');
               break;
@@ -63,11 +66,23 @@ export class HttpinterceptorService implements HttpInterceptor {
   }
 
   private async showToast(message: string) {
+
+    if (this.isToastVisible) {
+      return;
+    }
+
+    this.isToastVisible = true;
+
     const toast = await this.toastController.create({
       message,
       duration: 3000,
       position: 'bottom'
     });
+
+    toast.onDidDismiss().then(() => {
+      this.isToastVisible = false;
+    });
+    
     toast.present();
   }
 
