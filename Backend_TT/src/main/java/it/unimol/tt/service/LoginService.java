@@ -64,7 +64,7 @@ public class LoginService {
         } else
             utente = utenteRichiesto.get();
 
-        if (/*utente.getRuolo().equals(Ruolo.INTERNO) && */!this.passwordEncoder.matches(loginRequest.getPassword(), utente.getPassword()))
+        if (utente.getRuolo().equals(Ruolo.INTERNO) && !this.passwordEncoder.matches(loginRequest.getPassword(), utente.getPassword()))
             throw new CredenzialiErrateException("Password errata!");
 
         if (utente.getRuolo().equals(Ruolo.STUDENTE)) {
@@ -85,7 +85,7 @@ public class LoginService {
             } catch (JsonProcessingException e) {
                 throw new ConnessioneException("Server non raggiungibile!");
             }
-        }/* else if (utente.getRuolo().equals(Ruolo.DOCENTE) && utenteRichiesto.isPresent()) {
+        } else if (utente.getRuolo().equals(Ruolo.DOCENTE) && utenteRichiesto.isPresent()) {
             try {
                 this.loginEsse3(loginRequest);
             } catch (CredenzialiErrateException e) {
@@ -93,7 +93,7 @@ public class LoginService {
             } catch (ConnessioneException | JsonProcessingException e) {
                 throw new ConnessioneException("Server non raggiungibile!");
             }
-        }*/
+        }
 
         jwt = this.jwtService.generateToken(utente);
 
@@ -157,7 +157,7 @@ public class LoginService {
                 .nome(nome)
                 .cognome(cognome)
                 .nomeUtente(loginRequest.getNomeUtente())
-                .password(this.passwordEncoder.encode(loginRequest.getPassword()))  // Da rimuovere
+                //.password(this.passwordEncoder.encode(loginRequest.getPassword()))  // Da rimuovere
                 .ruolo(grpId == 6? Ruolo.STUDENTE: Ruolo.DOCENTE)
                 .build();
 
