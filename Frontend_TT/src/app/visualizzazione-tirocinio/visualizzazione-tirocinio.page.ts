@@ -99,6 +99,7 @@ export class VisualizzazioneTirocinioPage {
 
   private async aggiorna(): Promise<boolean> {
     this.tirocinio = await this.tirocinioService.aggiornaTirocinio(this.tirocinioId);
+    await this.homeTirocinioService.preparaTirocinioObj();
     if (this.tirocinio !== null) {
       if (!this.tirocinioService.checkValiditaRuolo(this.tirocinio.ruoloUtente)) {
         this.navCtrl.navigateBack(['/home-studente-tirocinio']);
@@ -303,10 +304,9 @@ export class VisualizzazioneTirocinioPage {
 
   async concludiTirocinio() {
     if (this.tirocinio !== null && this.tirocinio.tirocinio.id !== undefined) {
-      this.tirocinioApiService.modificaStatoTirocinio(this.tirocinio.tirocinio.id, "COMPLETATO").subscribe((res) => {
-        this.homeTirocinioService.preparaTirocinioObj().then((tir) => {
-          this.navCtrl.navigateForward(['/home-studente-tirocinio']);
-        });
+      this.tirocinioApiService.modificaStatoTirocinio(this.tirocinio.tirocinio.id, "COMPLETATO").subscribe(async (res) => {
+        await this.homeTirocinioService.preparaTirocinioObj()
+        this.navCtrl.navigateBack(['/home-studente-tirocinio']);
       });
     }
   }
@@ -321,10 +321,9 @@ export class VisualizzazioneTirocinioPage {
 
   eliminaTirocinio() {
     if (this.tirocinio !== null && this.tirocinio.tirocinio.id !== undefined) {
-      this.tirocinioApiService.modificaStatoTirocinio(this.tirocinio.tirocinio.id, "ARCHIVIATO").subscribe((res) => {
-        this.homeTirocinioService.preparaTirocinioObj().then((tir) => {
-          this.navCtrl.navigateForward(['/home-studente-tirocinio']);
-        });
+      this.tirocinioApiService.modificaStatoTirocinio(this.tirocinio.tirocinio.id, "ARCHIVIATO").subscribe(async (res) => {
+        await this.homeTirocinioService.preparaTirocinioObj();
+        this.navCtrl.navigateBack(['/home-studente-tirocinio']);
       });
     }
   }

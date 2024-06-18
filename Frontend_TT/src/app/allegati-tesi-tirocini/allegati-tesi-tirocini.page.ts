@@ -9,7 +9,6 @@ import { TesiService } from '../services/tesi/tesi.service';
 import { TirocinioService } from '../services/tirocinio/tirocinio.service';
 import { TesiResponse } from '../interfaces/api/tesi/tesi-response-interface';
 import { TirocinioResponse } from '../interfaces/api/tirocinio/tirocinio-response-interface';
-import { AllegatoApiService } from '../api/allegato/allegato-api.service';
 import { AllegatoService } from '../services/allegato/allegato.service';
 
 @Component({
@@ -33,9 +32,7 @@ export class AllegatiTesiTirociniPage {
   constructor( public router: RouterModule, 
     private allegatiTesiTirocinioService: AllegatiTesiTirocinioService, 
     private navCtr: NavController, 
-    private sharedService: SharedService, 
     private route: ActivatedRoute, 
-    private allegatiApiService: AllegatiApiService,
     private tesiService: TesiService,
     private tirocinioService: TirocinioService,
     private allegatoService: AllegatoService ) { 

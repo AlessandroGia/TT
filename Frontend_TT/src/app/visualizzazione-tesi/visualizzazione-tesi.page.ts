@@ -1,12 +1,11 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { HomeTesiService } from './../services/home-tesi/home-tesi.service';
+import { Component, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationExtras } from '@angular/router';
 import { AlertController, ToastController } from '@ionic/angular';
 import { IonModal, NavController } from '@ionic/angular';
 import { TesiApiService } from '../api/tesi/tesi-api.service';
 import { SharedService } from '../services/shared/shared.service';
-import { Tesi } from '../interfaces/primitive/tesi-interface';
 import { Utente } from '../interfaces/primitive/utente-interface';
-import { HomeTesiService } from '../services/home-tesi/home-tesi.service';
 import { AllegatiTesiTirocinioService } from '../services/allegati-tesi-tirocinio/allegati-tesi-tirocinio.service';
 import { TesiService } from '../services/tesi/tesi.service';
 import { TesiResponse } from '../interfaces/api/tesi/tesi-response-interface';
@@ -43,13 +42,13 @@ export class VisualizzazioneTesiPage {
 
   constructor( private alertController: AlertController,
     private tesiService: TesiService,
-    private allegatiTesiTirocinioService: AllegatiTesiTirocinioService, 
-    private homeTesiService: HomeTesiService, 
+    private allegatiTesiTirocinioService: AllegatiTesiTirocinioService,
     private toastController: ToastController, 
     private navCtrl: NavController, 
     private route: ActivatedRoute, 
     private sharedService: SharedService, 
-    private tesiApiService: TesiApiService ) { 
+    private tesiApiService: TesiApiService,
+    private HomeTesiService: HomeTesiService) { 
     
     this.tesi = this.tesiService.getTesi();
     this.isModificabile = this.tesiService.checkTesiIsModificabile(this.tesi.tesi.statoTesi, this.tesi.ruoloUtente);
@@ -91,6 +90,7 @@ export class VisualizzazioneTesiPage {
 
   private async aggiorna(): Promise<boolean> {
     this.tesi = await this.tesiService.aggiornaTesi(this.tesiId);
+    await this.HomeTesiService.preparaTesiObj();
     if (this.tesi !== null) {
       if (!this.tesiService.checkValiditaRuolo(this.tesi.ruoloUtente)) {
         this.navCtrl.navigateBack(['/home-studente-tesi']);
@@ -332,7 +332,8 @@ export class VisualizzazioneTesiPage {
       else {
         if (await this.aggiorna()) {
           this.tesiApiService.cambiaDataDiscussioneTesi(this.tesi!.tesi.id, this.tesi.tesi.dataDiscussione).subscribe((res) => {
-            this.tesiApiService.cambiaStatoTesi(this.tesi!.tesi.id, "CONCLUSA").subscribe((res) => {
+            this.tesiApiService.cambiaStatoTesi(this.tesi!.tesi.id, "CONCLUSA").subscribe(async (res) => {
+              await this.HomeTesiService.preparaTesiObj();
               this.navCtrl.navigateBack(['/home-studente-tesi']);
             });
           });
@@ -344,7 +345,8 @@ export class VisualizzazioneTesiPage {
   async eliminaTesi() {
     if (this.tesi !== null && this.tesi.tesi.id !== undefined) {
       if (await this.aggiorna()) {
-        this.tesiApiService.cambiaStatoTesi(this.tesi.tesi.id, "ARCHIVIATA").subscribe((res) => {
+        this.tesiApiService.cambiaStatoTesi(this.tesi.tesi.id, "ARCHIVIATA").subscribe(async (res) => {
+          await this.HomeTesiService.preparaTesiObj();
           this.navCtrl.navigateBack(['/home-studente-tesi']);
         });
       }

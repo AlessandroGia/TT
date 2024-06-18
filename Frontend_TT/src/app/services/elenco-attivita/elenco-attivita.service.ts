@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 import { ElencoAttivitaApiService } from 'src/app/api/elenco-attivita/elenco-attivita-api.service';
 import { ElencoAttivitaResponse } from 'src/app/interfaces/api/elenco-attivita/elenco-attivita-response-interface';
-import { Attivita } from 'src/app/interfaces/primitive/attivita-interface';
 
 @Injectable({
   providedIn: 'root'

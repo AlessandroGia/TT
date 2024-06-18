@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ApiServiceService } from 'src/app/services/api/api-service.service';
-import { NuovoAllegatoTesiPOSTRequest, NuovoAllegatoTirocinioPOSTRequest } from 'src/app/interfaces/api/nuovo-allegato/nuovo-allegato-request-interface';
-import { NuovoAllegatoPercorsoResponse, NuovoAllegatoTipologiaResponse } from 'src/app/interfaces/api/nuovo-allegato/nuovo-allegato-response-interface';
+import { NuovoAllegatoTipologiaResponse } from 'src/app/interfaces/api/nuovo-allegato/nuovo-allegato-response-interface';
 
 @Injectable({
   providedIn: 'root'

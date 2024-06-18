@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { AllegatiApiService } from 'src/app/api/allegati/allegati-api.service';
 import { AllegatoApiService } from 'src/app/api/allegato/allegato-api.service';
 import { Allegato } from 'src/app/interfaces/primitive/allegato-interface';
 

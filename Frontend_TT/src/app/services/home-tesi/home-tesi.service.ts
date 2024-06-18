@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, interval } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { HomeTesiApiService } from 'src/app/api/home-tesi/home-tesi-api.service';
 import { HomeTesiResponse } from 'src/app/interfaces/api/home-tesi/home-tesi-response-interface';
 

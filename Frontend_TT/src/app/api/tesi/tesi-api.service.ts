@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { ApiServiceService } from 'src/app/services/api/api-service.service';
 import { TesiCorrelatoriPUTRequest, TesiDataDiscussionePUTRequest, TesiStatoPUTRequest, TesiTitoloPUTRequest } from 'src/app/interfaces/api/tesi/tesi-request-interface';
 import { Utente } from 'src/app/interfaces/primitive/utente-interface';
-import { Tesi } from 'src/app/interfaces/primitive/tesi-interface';
 import { TesiResponse } from 'src/app/interfaces/api/tesi/tesi-response-interface';
 
 @Injectable({

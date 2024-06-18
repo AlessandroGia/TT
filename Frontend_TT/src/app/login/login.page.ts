@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { IonRouterOutlet, Platform } from '@ionic/angular';
 import { LoginApiService } from '../api/login/login-api.service';

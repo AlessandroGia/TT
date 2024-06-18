@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { AlertController, AlertInput, IonModal, NavController, ToastController } from '@ionic/angular';
 import { SharedService } from '../services/shared/shared.service';
 import { NuovaTesiApiService } from '../api/nuova-tesi/nuova-tesi-api.service';
@@ -48,7 +48,13 @@ export class NuovaTesiPage {
   carriere: string[] = [];
   carrieraSelezionata: Carriera | undefined = undefined;
 
-  constructor(private navCtrl: NavController, private sharedService: SharedService, private toastController: ToastController, private nuovaTesiApiService: NuovaTesiApiService, private route: ActivatedRoute, private alertController: AlertController) {
+  constructor(private navCtrl: NavController, 
+    private sharedService: SharedService, 
+    private toastController: ToastController, 
+    private nuovaTesiApiService: NuovaTesiApiService, 
+    private route: ActivatedRoute, 
+    private alertController: AlertController) {
+      
     this.route.queryParams.subscribe(params => {
       this.carriere = JSON.parse(params["obj"]);
       if (this.carriere.length > 1) {

@@ -1,7 +1,7 @@
-import { ChangeDetectorRef, Component, ElementRef, NgZone, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, ElementRef } from '@angular/core';
 import { AlertController, AlertInput, GestureController, GestureDetail, IonRouterOutlet, NavController, Platform } from '@ionic/angular';
 import { SharedService } from '../services/shared/shared.service';
-import { ActivatedRoute, NavigationExtras, Router } from '@angular/router';
+import { NavigationExtras } from '@angular/router';
 import { LoginResponse } from '../interfaces/api/login/login-response-interface';
 import { Tirocinio } from '../interfaces/primitive/tirocinio-interface';
 import { HomeTirocinioApiService } from '../api/home-tirocinio/home-tirocinio-api.service';
@@ -53,10 +53,8 @@ export class HomeStudenteTirocinioPage {
     private el: ElementRef, 
     private gestureCtrl: GestureController, 
     private cdRef: ChangeDetectorRef, 
-    private sharedService: SharedService, 
-    private _route: ActivatedRoute, 
+    private sharedService: SharedService,
     private HomeTirocinioApiService: HomeTirocinioApiService, 
-    private router: Router, 
     private alertController: AlertController,
     private logoutService: LogoutService ) {
 

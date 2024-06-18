@@ -1,9 +1,8 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import { NavController, ToastController } from '@ionic/angular';
 import { SharedService } from '../services/shared/shared.service';
 import { NuovaAttivitaApiService } from '../api/nuova-attivita/nuova-attivita-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { Tirocinio } from '../interfaces/primitive/tirocinio-interface';
 
 @Component({
   selector: 'app-creazione-attivita',
@@ -33,7 +32,11 @@ export class CreazioneAttivitaPage {
   nota: string;
 
 
-  constructor(private navCtrl: NavController,  private toastController: ToastController, private route: ActivatedRoute, private sharedService: SharedService, private nuovaAttivitaApiService: NuovaAttivitaApiService) { 
+  constructor( private navCtrl: NavController,  
+    private toastController: ToastController, 
+    private route: ActivatedRoute, 
+    private sharedService: SharedService, 
+    private nuovaAttivitaApiService: NuovaAttivitaApiService ) { 
     
     this.route.queryParams.subscribe(params => {
       this.tirocinioId = Number(params["id"]);

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Observable, map } from 'rxjs';
 import { ApiServiceService } from 'src/app/services/api/api-service.service';
 import { LibrettoDiarioPOSTRequest } from 'src/app/interfaces/api/libretto-diario/libretto-diario-request-interface';

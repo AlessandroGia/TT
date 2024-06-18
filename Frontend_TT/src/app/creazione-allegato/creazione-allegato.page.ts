@@ -1,11 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { IonModal, NavController, ToastController } from '@ionic/angular';
 import { NuovoAllegatoApiService } from '../api/nuovo-allegato/nuovo-allegato-api.service';
 import { SharedService } from '../services/shared/shared.service';
 import { ActivatedRoute } from '@angular/router';
 import { NuovoAllegatoTipologiaResponse } from '../interfaces/api/nuovo-allegato/nuovo-allegato-response-interface';
-import { Form } from '@angular/forms';
-import { AllegatiApiService } from '../api/allegati/allegati-api.service';
 import { TesiService } from '../services/tesi/tesi.service';
 import { TirocinioService } from '../services/tirocinio/tirocinio.service';
 
@@ -36,8 +34,7 @@ export class CreazioneAllegatoPage {
   tipologie: NuovoAllegatoTipologiaResponse[] = [];
 
   constructor(private navCtrl: NavController, 
-    private toastController: ToastController, 
-    private sharedService: SharedService, 
+    private toastController: ToastController,
     private nuovoAllegatoApiService: NuovoAllegatoApiService, 
     private route: ActivatedRoute,
     private tesiService: TesiService,

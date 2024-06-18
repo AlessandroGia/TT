@@ -1,6 +1,6 @@
-import { ChangeDetectorRef, Component, ElementRef, NgZone, OnInit, Optional, ViewChild } from '@angular/core';
-import { AlertController, AlertInput, GestureController, GestureDetail, IonContent, IonRouterOutlet, NavController, Platform } from '@ionic/angular';
-import { ActivatedRoute, NavigationExtras } from "@angular/router"
+import { ChangeDetectorRef, Component, ElementRef} from '@angular/core';
+import { AlertController, AlertInput, GestureController, GestureDetail, IonRouterOutlet, NavController, Platform } from '@ionic/angular';
+import { NavigationExtras } from "@angular/router"
 import { LoginResponse } from '../interfaces/api/login/login-response-interface';
 import { SharedService } from '../services/shared/shared.service';
 import { HomeTesiApiService } from '../api/home-tesi/home-tesi-api.service';
@@ -53,7 +53,6 @@ export class HomeStudenteTesiPage {
     private platform: Platform,
     private gestureCtrl: GestureController,
     private cdRef: ChangeDetectorRef, private navCtrl: NavController, 
-    private route: ActivatedRoute, 
     private sharedService: SharedService, 
     private homeTesiApiService: HomeTesiApiService, 
     private alertController: AlertController,

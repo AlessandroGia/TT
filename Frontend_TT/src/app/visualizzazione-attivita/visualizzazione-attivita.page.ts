@@ -1,10 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AlertController, NavController, ToastController } from '@ionic/angular';
 import { AttivitaApiService } from '../api/attivita/attivita-api.service';
 import { ActivatedRoute } from '@angular/router';
-import { SharedService } from '../services/shared/shared.service';
 import { Attivita } from '../interfaces/primitive/attivita-interface';
-import { Tirocinio } from '../interfaces/primitive/tirocinio-interface';
 import { AttivitaService } from '../services/attivita/attivita.service';
 import { TirocinioService } from '../services/tirocinio/tirocinio.service';
 
@@ -34,7 +32,6 @@ export class VisualizzazioneAttivitaPage {
   constructor(private alertController: AlertController, 
     private toastController: ToastController, 
     private navCtrl: NavController, 
-    private sharedService: SharedService, 
     private route: ActivatedRoute, 
     private attivitaApiService: AttivitaApiService,
     private attivitaService: AttivitaService,

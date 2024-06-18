@@ -1,9 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController } from '@ionic/angular';
-import { Tirocinio } from '../interfaces/primitive/tirocinio-interface';
 import { ActivatedRoute, NavigationExtras } from '@angular/router';
-import { SharedService } from '../services/shared/shared.service';
-import { ElencoAttivitaApiService } from '../api/elenco-attivita/elenco-attivita-api.service';
 import { Attivita } from '../interfaces/primitive/attivita-interface';
 import { ElencoAttivitaResponse } from '../interfaces/api/elenco-attivita/elenco-attivita-response-interface';
 import { TirocinioService } from '../services/tirocinio/tirocinio.service';
@@ -31,8 +28,6 @@ export class ElencoAttivitaTirocinioPage {
 
   constructor(private navCtrl: NavController, 
     private route: ActivatedRoute, 
-    private sharedService: SharedService, 
-    private elencoAttivitaApiService: ElencoAttivitaApiService, 
     private tirocinioService: TirocinioService,
     private elencoAttivitaService: ElencoAttivitaService,
     private attivitaService: AttivitaService) { 
