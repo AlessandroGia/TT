@@ -40,8 +40,8 @@
         <ion-input color="light" [clearInput]="true" [readonly]="true" [value]="durata"></ion-input>
       </ion-item>
 
-      <h3 class="titolo"><b>ATTIVITÀ SVOLTA</b> <ion-icon *ngIf="isModificabile" class="present-alert" name="pencil-outline"></ion-icon></h3>
-      <ion-item>
+      <h3  *ngIf="isModificabile || (attivitaSvolta !== undefined && attivitaSvolta !== null && attivitaSvolta !== '')" class="titolo"><b>ATTIVITÀ SVOLTA</b> <ion-icon *ngIf="isModificabile" class="present-alert" name="pencil-outline"></ion-icon></h3>
+      <ion-item *ngIf="isModificabile || (attivitaSvolta !== undefined && attivitaSvolta !== null && attivitaSvolta !== '')" >
         <ion-textarea *ngIf="isModificabile" [autoGrow]="true" color="light" placeholder="Inserire nota" [(ngModel)]="nota"></ion-textarea>
         <ion-input *ngIf="!isModificabile" color="light" [clearInput]="true" [value]="attivitaSvolta" [readonly]="true"></ion-input>
       </ion-item>
