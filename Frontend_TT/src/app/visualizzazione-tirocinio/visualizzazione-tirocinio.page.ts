@@ -285,7 +285,7 @@ export class VisualizzazioneTirocinioPage {
             text: 'OK',
             role: 'confirm',
             handler: () => {
-              this.concludiTirocinio();
+              this.verificaConclusioneTirocinio();
             },
           },
         ],
@@ -312,7 +312,7 @@ export class VisualizzazioneTirocinioPage {
   }
 
   async verificaConclusioneTirocinio () {
-    if (this.tirocinio !== null && this.tirocinio.tirocinio.id !== undefined) {
+    if (this.tirocinio !== null && this.tirocinio.tirocinio.id !== undefined && this.oreSvolte < this.tirocinio.tirocinio.durata) {
       this.presentToast("Devi completare le ore del tirocinio")
     } else {
       this.concludiTirocinio();
