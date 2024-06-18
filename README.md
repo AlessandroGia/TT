@@ -1,7 +1,10 @@
 
-# Nome del Progetto
+# TT (Tesi & Tirocini)
 
 Questo progetto è un'applicazione full-stack costruita con un frontend Ionic/Angular e un backend Spring Boot, il tutto containerizzato usando Docker. Il frontend è progettato per funzionare su entrambe le piattaforme iOS e Android, mentre il backend è un server API robusto.
+
+L'applicazione si occupa della gestione di tesi e tirocini per l'[Università degli Studi del Molise](https://www3.unimol.it), consentendo l'interazione e lo scambio di materiali e documenti tra docenti, studenti e eventuali collaboratori.
+
 
 ## Indice
 
@@ -78,13 +81,12 @@ Il frontend è un'applicazione Ionic/Angular.
     ionic capacitor add ios
     ```
 
-2. Esgui la build in Xcode:
+2. Esegui la build in Xcode:
 
     ```sh
     ionic cap build ios
     ```
 
-3. Costruisci ed esegui il progetto in Xcode.
 
 ### Build per Android
 
@@ -94,13 +96,12 @@ Il frontend è un'applicazione Ionic/Angular.
     ionic capacitor add android
     ```
 
-2. Esgui la build in Android Studio:
+2. Esegui la build in Android Studio:
 
     ```sh
     ionic cap build android
     ```
 
-3. Costruisci ed esegui il progetto in Android Studio.
 
 ## Uso
 
@@ -115,9 +116,3 @@ Dopo aver configurato sia il backend che il frontend, puoi iniziare a utilizzare
 ## Contributi
 
 I contributi sono benvenuti! Si prega di forkare questo repository e inviare una pull request per qualsiasi miglioramento.
-
-1. Fork del progetto
-2. Crea un branch della tua funzione (`git checkout -b feature/AmazingFeature`)
-3. Effettua il commit delle tue modifiche (`git commit -m 'Add some AmazingFeature'`)
-4. Fai il push al branch (`git push origin feature/AmazingFeature`)
-5. Apri una Pull Request
