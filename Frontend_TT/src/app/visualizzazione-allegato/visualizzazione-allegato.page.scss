@@ -21,6 +21,12 @@ ion-checkbox {
     --checkmark-width: 5%;
 }
 
+.allegatoUpperIcons {
+    color: #ffffff;
+    width: 2.5em;
+    height: 2.5em;
+}
+
 .item {
     --color: #ffffff;
 }
@@ -67,13 +73,6 @@ ion-checkbox {
     position: absolute;
 }
 
-.eliminaAButtons {
-    margin-top:20%;
-    --background: #012D5E;
-    color: #ffffff;
-    width: 2.5em;
-    height: 2.5em;
-}
 
 .eliminaAButton {
     margin-top:20%;
@@ -81,6 +80,11 @@ ion-checkbox {
     color: #ffffff;
     width: 2.5em;
     height: 2.5em;
+}
+
+
+.eliminaAButtons {
+    margin-right: 3%;
 }
 
 .allegatoUpperIcons {
