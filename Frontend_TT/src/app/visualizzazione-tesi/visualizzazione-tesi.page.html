@@ -10,12 +10,12 @@
 </ion-header>
 
 <ion-content class="visualizzazioneTesiContent" fullscreen="true">
+  <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
   <div class="mainDiv">
     <div class="userInput">
-
-      <ion-refresher slot="fixed" (ionRefresh)="refresh($event)">
-        <ion-refresher-content></ion-refresher-content>
-      </ion-refresher>
 
       <h3 class="titolo"><b>TITOLO</b> <ion-icon *ngIf="isModificabile" class="present-alert" name="pencil-outline"></ion-icon></h3>
       <ion-item  *ngIf="isModificabile" [button]="true" (click)="presentTitoloAlert()">
