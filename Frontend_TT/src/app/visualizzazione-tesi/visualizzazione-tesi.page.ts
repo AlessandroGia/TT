@@ -266,13 +266,15 @@ export class VisualizzazioneTesiPage {
   }
 
   async presentConcludiTesi() {
+  
+    const dataDiscussione = this.tesi?.tesi.dataDiscussione;
     if (await this.aggiorna()) {
       if (this.tesi !== null && this.tesi !== undefined ) {
-        if (this.tesi.tesi.dataDiscussione === undefined || this.tesi.tesi.dataDiscussione === null || this.tesi.tesi.dataDiscussione === "")
+        if (dataDiscussione === undefined || dataDiscussione === null || dataDiscussione === "")
           this.presentToast("Devi selezionare la data discussione tesi");
         else {
           const alert = await this.alertController.create({
-            header: 'Confermi di aver discusso la tesi in data ' + this.tesi.tesi.dataDiscussione + '?',
+            header: 'Confermi di aver discusso la tesi in data ' + dataDiscussione + '?',
             buttons: [
               {
                 text: 'Annulla',
@@ -282,7 +284,7 @@ export class VisualizzazioneTesiPage {
                 text: 'OK',
                 role: 'confirm',
                 handler: () => {
-                  this.concludiTesi();
+                  this.concludiTesi(dataDiscussione);
                 },
               },
             ],
@@ -324,13 +326,14 @@ export class VisualizzazioneTesiPage {
     await toast.present();
   }
 
-  async concludiTesi() {
+  async concludiTesi(dataDiscussione: string) {
     if (this.tesi !== null && this.tesi.tesi.id !== undefined) {
-      if (this.tesi.tesi.dataDiscussione === undefined || this.tesi.tesi.dataDiscussione === null || this.tesi.tesi.dataDiscussione === "")
+      if (dataDiscussione === undefined || dataDiscussione === null || dataDiscussione === "")
         this.presentToast("Devi selezionare la data discussione tesi");
       else {
         if (await this.aggiorna()) {
-          this.tesiApiService.cambiaDataDiscussioneTesi(this.tesi!.tesi.id, this.tesi.tesi.dataDiscussione).subscribe((res) => {
+          console.log(dataDiscussione);
+          this.tesiApiService.cambiaDataDiscussioneTesi(this.tesi!.tesi.id, dataDiscussione).subscribe((res) => {
             this.tesiApiService.cambiaStatoTesi(this.tesi!.tesi.id, "CONCLUSA").subscribe(async (res) => {
               await this.HomeTesiService.preparaTesiObj();
               this.navCtrl.navigateBack(['/home-studente-tesi']);
@@ -377,15 +380,11 @@ export class VisualizzazioneTesiPage {
   }
 
   async openCalendar() {
-    if (await this.aggiorna()) {
-      this.showCalendar = true;
-    }
+    this.showCalendar = true;
   }
 
   async cancelCalendar() {
-    if (await this.aggiorna()) {
-      this.showCalendar = false;
-    }
+    this.showCalendar = false;
   }
 
   public aggiornaData() {
@@ -397,6 +396,7 @@ export class VisualizzazioneTesiPage {
 
     if (this.tesi !== undefined && this.tesi !== null)
       this.tesi.tesi.dataDiscussione = `${day.toString().padStart(2, '0')}/${month.toString().padStart(2, '0')}/${year}`;
+    
   }
 
 }

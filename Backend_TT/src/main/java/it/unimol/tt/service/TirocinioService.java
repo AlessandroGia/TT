@@ -254,10 +254,14 @@ public class TirocinioService {
         Tirocinio tirocinio = this.tirocinioRepository.findTirocinioById(attivita.getTirocinio().getId());
 
         tirocinio.setOreSvolte(tirocinio.getOreSvolte() - attivita.getOre());
-        tirocinio.setMinutiSvolti(tirocinio.getMinutiSvolti() - attivita.getMinuti());
+
+        if (tirocinio.getMinutiSvolti() - attivita.getMinuti() < 0) {
+            tirocinio.setOreSvolte(tirocinio.getOreSvolte() - 1);
+            tirocinio.setMinutiSvolti(tirocinio.getMinutiSvolti() - attivita.getMinuti() + 60);
+        } else
+            tirocinio.setMinutiSvolti(tirocinio.getMinutiSvolti() - attivita.getMinuti());
 
         this.tirocinioRepository.save(tirocinio);
-
         this.attivitaRepository.deleteById(idAttivita);
     }
 

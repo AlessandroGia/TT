@@ -26,7 +26,6 @@ def genera_pdf_da_html(html):
         c = pdfkit.from_string(html, False)
     except Exception as e:
         print(e)
-        print("a")
     return c
 
 
