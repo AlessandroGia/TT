@@ -1,10 +1,9 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { AlertController, IonModal, ToastController } from '@ionic/angular';
+import { Component, ViewChild } from '@angular/core';
+import { IonModal, ToastController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 import { Tirocinio } from '../interfaces/primitive/tirocinio-interface';
 import { ActivatedRoute } from '@angular/router';
 import { LibrettoDiarioApiService } from '../api/libretto-diario/libretto-diario-api.service';
-import { SharedService } from '../services/shared/shared.service';
 import { Utente } from '../interfaces/primitive/utente-interface';
 import { FileHandlerService } from '../services/file-handler/file-handler.service';
 
@@ -40,12 +39,10 @@ export class LibrettoDiarioPage {
   showedTutorSelezionato: string = "";
 
   constructor(
-    private alertController: AlertController,
     private navCtrl: NavController, 
     private toastController: ToastController, 
     private route: ActivatedRoute, 
     private librettoDiaroApiService: LibrettoDiarioApiService, 
-    private sharedService: SharedService,
     private fileHandlerService: FileHandlerService
   ) { 
 
@@ -176,18 +173,6 @@ export class LibrettoDiarioPage {
     await toast.present();
   }
 
-  async salvaFile (res: { filename: string, data: Blob }) {
-    const url = window.URL.createObjectURL(res.data);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = res.filename;
-    document.body.appendChild(a);
-    a.click();
-    window.URL.revokeObjectURL(url);
-  }
-
-
-
   public async genera() {
     
     if (this.tirocinio !== null) {
@@ -203,7 +188,6 @@ export class LibrettoDiarioPage {
         this.presentToast("La data di fine attivita' non e' valida");
       else {
         this.librettoDiaroApiService.generaLibrettoDiario(this.tirocinio.id, this.dataPFFormattata, this.tutorSelezionato.nome + " " + this.tutorSelezionato.cognome, this.dataIFormattata, this.dataFFormattata, this.nota).subscribe(async (res) => {
-          //this.salvaFile(res);
           await this.fileHandlerService.scaricaEApriFile(res.data, res.filename);
           this.navCtrl.navigateBack(['/visualizzazione-tirocinio']);
         });
