@@ -1,3 +1,6 @@
+import textwrap
+
+
 class HtmlStyle:
     def __init__(self):
         self.__style = """
@@ -9,8 +12,10 @@ class HtmlStyle:
                 }
                 table {
                     width: 100%;
+                    max-width: 100%;
                     border-collapse: collapse;
                     margin-top: 20px;
+                    table-layout: fixed;
                 }
                 th, td {
                     border: 1px solid #000;
@@ -39,7 +44,7 @@ class HtmlStyle:
                 .container-table {
                     text-align: center;
                     width: 100%;
-                    max-width: 1400px;
+                    max-width: 900px;
                     margin: auto;
                     padding: 20px;
                 }
@@ -134,7 +139,6 @@ class HtmlStyle:
                     letter-spacing: 0.05em;
                 }
                 .lines {
-                    border-top: 1px solid #000;
                     margin: 10px 0;
                 }
                 .line {
@@ -271,6 +275,8 @@ class HtmlStyle:
         """)
 
     def get_html_page_3(self, data):
+        annotazioni = "".join([f"<div class='line'>{annotazione}</div>" for annotazione in textwrap.wrap(data["annotazioni"], width=108)])
+
         return self.__formatta_stringa(f"""
             <!DOCTYPE html>
             <html lang="it">
@@ -299,12 +305,7 @@ class HtmlStyle:
                         <div class="annotation-section">
                             <h3>ANNOTAZIONI</h3>
                             <div class="lines">
-                                <div class="line"></div>
-                                <div class="line"></div>
-                                <div class="line"></div>
-                                <div class="line"></div>
-                                <div class="line"></div>
-                                <div class="line"></div>
+                                {annotazioni}
                             </div>
                         </div>
                     </div>
