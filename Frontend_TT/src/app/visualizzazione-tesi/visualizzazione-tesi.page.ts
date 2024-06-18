@@ -48,7 +48,7 @@ export class VisualizzazioneTesiPage {
     private route: ActivatedRoute, 
     private sharedService: SharedService, 
     private tesiApiService: TesiApiService,
-    private HomeTesiService: HomeTesiService) { 
+    private HomeTesiService: HomeTesiService ) { 
     
     this.tesi = this.tesiService.getTesi();
     this.isModificabile = this.tesiService.checkTesiIsModificabile(this.tesi.tesi.statoTesi, this.tesi.ruoloUtente);
@@ -224,10 +224,10 @@ export class VisualizzazioneTesiPage {
   async presentTitoloAlert() {
     if (await this.aggiorna()) {
       if (!this.alertFlag) {
+
         this.alertFlag = true;
         const alert = await this.alertController.create({
           header: 'Modifica Titolo',
-          
           buttons: [
             {
               text: 'Annulla',
@@ -243,7 +243,6 @@ export class VisualizzazioneTesiPage {
           ],
           inputs: [
             {
-              cssClass: 'custom-alert-input-default',
               placeholder: "Nuovo titolo",
               name: 'nome'
             }

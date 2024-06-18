@@ -38,8 +38,12 @@
     color: #012D5E !important;
 }
 
-.alert-input {
-    color: #012D5E !important;
+.alert-input.sc-ion-alert-md {
+    color: white !important;
+}
+
+.alert-input.sc-ion-alert-ios {
+  color: #012D5E !important;
 }
 
 ion-toast {
@@ -49,9 +53,6 @@ ion-toast {
     font-weight: bold;
 }
 
-.custom-alert .alert-checkbox-label {
-    
-}
 
 .custom-alert-input-red .alert-checkbox-label {
   color: red !important;
