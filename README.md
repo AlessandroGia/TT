@@ -113,6 +113,26 @@ Dopo aver configurato sia il backend che il frontend, puoi iniziare a utilizzare
 - La Web App per il direttore sarà in esecuzione su `http://{TUO_INDIRIZZO_IP}:5050`.
 - Phpmyadmin sarà in esecuzione su `http://{TUO_INDIRIZZO_IP}:8090`.
 
+## Team di Realizzazione
+
+Il progetto è stato realizzato da:
+
+1. **Alessandro Giacento**
+   - Ruolo: Frontend
+   - [Mail](mailto:a.giacento@studenti.unimol.it)
+
+2. **Maria Laura Di Lello**
+   - Ruolo: Frontend
+   - [Mail](mailto:m.dilello@studenti.unimol.it)
+
+3. **Robero Casale**
+   - Ruolo: Backend
+   - [Mail](mailto:r.casale1@studenti.unimol.it)
+
+4. **Leonardo Prioriello**
+   - Ruolo: Backend
+   - [Mail](mailto:l.prioriello@studenti.unimol.it)
+
 ## Contributi
 
 I contributi sono benvenuti! Si prega di forkare questo repository e inviare una pull request per qualsiasi miglioramento.
