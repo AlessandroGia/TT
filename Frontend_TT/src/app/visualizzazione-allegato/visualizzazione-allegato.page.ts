@@ -104,7 +104,7 @@ export class VisualizzazioneAllegatoPage {
   }
 
 
-  private async aggiorna(): Promise<boolean> {
+  private async aggiorna(scaricaFile: boolean = false): Promise<boolean> {
     if (this.typeAllegato === "tesi") {
       await this.tesiService.aggiornaTesi(this.typeId);
       const ruolo = this.tesiService.getTesi().ruoloUtente;
@@ -112,11 +112,13 @@ export class VisualizzazioneAllegatoPage {
         this.navCtrl.navigateBack(['/home-studente-tesi']);
         return false;
       }
-      const stato = this.tesiService.getTesi().tesi.statoTesi;
-      this.isModificabile = this.allegatoService.checkAllegatiIsModificabile(stato);
-      if (!this.isModificabile) {
-        this.inizializzaVariabili();
-        return false;
+      if (!scaricaFile) {
+        const stato = this.tesiService.getTesi().tesi.statoTesi;
+        this.isModificabile = this.allegatoService.checkAllegatiIsModificabile(stato);
+        if (!this.isModificabile) {
+          this.inizializzaVariabili();
+          return false;
+        }
       }
       try {
         this.allegato = await this.allegatoService.aggiornaAllegatoTesi(this.idAllegato);
@@ -133,11 +135,13 @@ export class VisualizzazioneAllegatoPage {
         this.navCtrl.navigateBack(['/home-studente-tirocinio']);
         return false;
       }
-      const stato = this.tirocinioService.getTirocinio().tirocinio.statoTirocinio;
-      this.isModificabile = this.allegatoService.checkAllegatiIsModificabile(stato);
-      if (!this.isModificabile) {
-        this.inizializzaVariabili();
-        return false;
+      if (!scaricaFile) {
+        const stato = this.tirocinioService.getTirocinio().tirocinio.statoTirocinio;
+        this.isModificabile = this.allegatoService.checkAllegatiIsModificabile(stato);
+        if (!this.isModificabile) {
+          this.inizializzaVariabili();
+          return false;
+        }
       }
       try {
         this.allegato = await this.allegatoService.aggiornaAllegatoTirocinio(this.idAllegato);
@@ -280,14 +284,17 @@ export class VisualizzazioneAllegatoPage {
   
 
   async scaricaFile() {
-    if (await this.aggiorna()) {
+    if(await this.aggiorna(true)) {
+
       if (this.typeAllegato === "tesi") {
-        this.allegatoApiService.scaricaAllegatoTesi(this.idAllegato).subscribe((res) => {
-          this.fileHandlerService.scaricaEApriFile(res.data, res.filename);
+        console.log('B')
+        this.allegatoApiService.scaricaAllegatoTesi(this.idAllegato).subscribe(async (res) => {
+          console.log('A')
+          await this.fileHandlerService.scaricaEApriFile(res.data, res.filename);
         });
       } else if (this.typeAllegato === "tirocinio") {
-        this.allegatoApiService.scaricaAllegatoTirocinio(this.idAllegato).subscribe((res) => {
-          this.fileHandlerService.scaricaEApriFile(res.data, res.filename);
+        this.allegatoApiService.scaricaAllegatoTirocinio(this.idAllegato).subscribe(async (res) => {
+          await this.fileHandlerService.scaricaEApriFile(res.data, res.filename);
         });
       }
     }

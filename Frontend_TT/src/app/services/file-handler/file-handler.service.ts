@@ -40,7 +40,7 @@ export class FileHandlerService {
     }
   }
   
-  async scaricaEApriFile(blob: Blob, fileName: string) {
+  public async scaricaEApriFile(blob: Blob, fileName: string) {
     
     try {
       const base64Data = await this.convertBlobToBase64(blob) as string;
@@ -58,14 +58,13 @@ export class FileHandlerService {
           path: fileName
         });
 
-        const finalPath = Capacitor.convertFileSrc(fileUri.uri);
-
-
         const fileOpenerOptions: FileOpenerOptions = {
           filePath: fileUri.uri,
           contentType: this.getFileMimeType(fileUri.uri),
           openWithDefault: true,
         };
+
+        console.log(this.platform)
 
         if (this.platform.is('ios') || this.platform.is('android')) {
           console.log('Attempting to open file:', fileUri.uri);
@@ -75,27 +74,25 @@ export class FileHandlerService {
               console.log('Error opening file', e);
               if (e.code === 'UNIMPLEMENTED') {
                 console.log('The functionality is not implemented on this platform.');
-                const url = window.URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.href = url;
-                a.download = fileName;
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
+                this.browser(blob, fileName)
               }
             });
         } else {
-          const url = window.URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = fileName;
-          document.body.appendChild(a);
-          a.click();
-          window.URL.revokeObjectURL(url);
+          this.browser(blob, fileName)
         }
       }
     } catch (error) {
       console.error('Error downloading or opening the file', error);
     }
+  }
+
+  private browser(blob: Blob, fileName: string): void {
+    const url = window.URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    window.URL.revokeObjectURL(url);
   }
 }
