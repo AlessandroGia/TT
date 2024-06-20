@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 })
 export class ApiServiceService {
 
-  private ip = "192.168.0.101"
+  private ip = "192.168.43.153"
   private port = "8080"
 
   constructor() { }

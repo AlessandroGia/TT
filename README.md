@@ -48,8 +48,16 @@ Il backend è un'applicazione Spring Boot che può essere eseguita utilizzando D
     ```sh
     cd Backend_TT
     ```
+    
+2. Crea un file .env con questo contenuto:
+    ```sh
+    MARIADB_DATABASE="tt"
+    MARIADB_USER="tt"
+    MARIADB_PASSWORD="tt"
+    MARIADB_ROOT_PASSWORD="tt"
+    ```
 
-2. Costruisci e avvia il backend usando Docker Compose:
+3. Costruisci e avvia il backend usando Docker Compose:
 
     ```sh
     docker-compose up --build
